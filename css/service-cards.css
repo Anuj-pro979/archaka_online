@@ -1,0 +1,138 @@
+/* service-cards.css - Styles for dynamic service cards */
+
+/* Common card styles */
+.ceremony-card, .service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ceremony-card:hover, .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.ceremony-card .card-img-top, .service-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.ceremony-card .card-title, .service-card .card-title {
+    font-weight: 600;
+    color: #512B81;
+    margin-bottom: 0;
+}
+
+/* Overlay styles */
+.ceremony-overlay, .service-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+    opacity: 0;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    transition: opacity 0.3s ease;
+}
+
+.ceremony-card:hover .ceremony-overlay, 
+.service-card:hover .service-overlay {
+    opacity: 1;
+}
+
+.ceremony-overlay p, .service-overlay p {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+/* Service-specific styling */
+/* Ceremonies */
+.ceremony-card {
+    border-bottom: 3px solid #512B81;
+}
+
+/* Pujas */
+.service-card.puja-card {
+    border-bottom: 3px solid #FF5733;
+}
+
+/* Japa */
+.service-card.japa-card {
+    border-bottom: 3px solid #33A1FF;
+}
+
+/* Homas */
+.service-card.homa-card {
+    border-bottom: 3px solid #FFBD33;
+}
+
+/* Services grid container */
+.services-grid {
+    margin-top: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .ceremony-card .card-img-top, .service-card .card-img-top {
+        height: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ceremony-card .ceremony-overlay, 
+    .service-card .service-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1));
+        height: 50%;
+    }
+    
+    .ceremony-card .card-img-top, .service-card .card-img-top {
+        height: 220px;
+    }
+}
+
+@media (max-width: 576px) {
+    .ceremony-card, .service-card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .ceremony-card .card-img-top, .service-card .card-img-top {
+        height: 200px;
+    }
+}
+
+/* Service section title */
+.service-section-title {
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    color: #512B81;
+}
+
+.service-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: #512B81;
+}
+
+/* View all button */
+.view-all-link {
+    display: inline-block;
+    color: #512B81;
+    font-weight: 600;
+    margin-top: 1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.view-all-link:hover {
+    color: #7048b6;
+    text-decoration: underline;
+} 

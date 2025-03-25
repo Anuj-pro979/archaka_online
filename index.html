@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priest Services - Authentic Vedic Ceremonies & Rituals</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/service-cards.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .purple-bg {
+            background-color: #8e44ad;
+        }
+        .carousel-item {
+            height: 450px;
+        }
+        .carousel-image {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+        .stats-box {
+            text-align: center;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+        .stats-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #8e44ad;
+        }
+        .service-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        .section-header {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .section-header h2 {
+            color: #8e44ad;
+            display: inline-block;
+            position: relative;
+        }
+        .section-header .see-all {
+            position: absolute;
+            right: 0;
+            top: 5px;
+        }
+        .section-bg-light {
+            background-color: #f8f9fa;
+        }
+        .section-bg-purple {
+            background-color: #f3e5f5;
+        }
+        .how-it-works-item {
+            text-align: center;
+            padding: 15px;
+        }
+        .how-it-works-icon {
+            font-size: 40px;
+            color: #8e44ad;
+            margin-bottom: 15px;
+        }
+        .panchang-card {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .priest-card {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .priest-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 3px solid #8e44ad;
+        }
+        .testimonial-card {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/archaka.png" alt="Priest Services Logo" height="60">
+                    <span class="ms-2 fw-bold">Priest Services</span>
+                    <small class="d-block text-muted">Genuine vedic priest service at your Doorstep</small>
+                </a>
+                
+                <div class="d-flex align-items-center ms-auto me-2">
+                    <div class="position-relative">
+                        <input class="form-control rounded-pill" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                        <i class="fas fa-search position-absolute" style="right: 10px; top: 10px;"></i>
+                    </div>
+                </div>
+                
+                <div class="d-flex">
+                    <a href="cart.html" class="btn me-2">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span class="badge bg-primary rounded-pill ms-1" id="cartCount">0</span>
+                    </a>
+                    <a href="login.html" class="btn" id="accountBtn">
+                        <i class="fas fa-user"></i> Account
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Main Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark purple-bg">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ceremonies.html">Ceremonies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="homas.html">Homas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="japam.html">Japam</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pujas.html">Pujas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dance.html">Dance</a>
+                        </li>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Holy Yatra
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                <li><a class="dropdown-item" href="#">Temple Yatra</a></li>
+                                <li><a class="dropdown-item" href="#">Pilgrimage Packages</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Temple Services
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                <li><a class="dropdown-item" href="#">Temple Darshan</a></li>
+                                <li><a class="dropdown-item" href="#">Special Archana</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Products
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                                <li><a class="dropdown-item" href="#">Pooja Items</a></li>
+                                <li><a class="dropdown-item" href="#">Yantras</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="consultation.html">Free Pandit Consultation</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Free Tools
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown5">
+                                <li><a class="dropdown-item" href="#">Panchang</a></li>
+                                <li><a class="dropdown-item" href="#">Festival Calendar</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Banner / Carousel -->
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="d-block w-100 carousel-image bg-warning">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-md-6">
+                                <h2 class="text-dark fw-bold">Annadhanam</h2>
+                                <p class="text-dark">Donate food to the needy and accumulate good karma</p>
+                                <a href="#" class="btn btn-primary px-4">Donate</a>
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <img src="images/services/priest.jpg" alt="Annadhanam" class="img-fluid" style="max-height: 350px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-block w-100 carousel-image bg-info">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-md-6">
+                                <h2 class="text-white fw-bold">Saturn Transit</h2>
+                                <p class="text-white">Perform rituals to alleviate the effects of Saturn Transit (Shani Peyarchi)</p>
+                                <a href="#" class="btn btn-primary px-4">Book Now</a>
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <div class="d-flex justify-content-end">
+                                    <img src="images/services/satyanarayan_puja.jpg" alt="Saturn Transit" class="img-fluid rounded-circle me-2" style="width: 100px; height: 100px; object-fit: cover;">
+                                    <img src="images/services/vivaha.jpg" alt="Shani Puja" class="img-fluid rounded-circle me-2" style="width: 100px; height: 100px; object-fit: cover;">
+                                    <img src="images/services/priest.jpg" alt="Remedy" class="img-fluid rounded-circle" style="width: 100px; height: 100px; object-fit: cover;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="d-block w-100 carousel-image bg-danger">
+                    <div class="container h-100">
+                        <div class="row h-100 align-items-center">
+                            <div class="col-md-6">
+                                <h2 class="text-white fw-bold">Temple Services</h2>
+                                <p class="text-white">Book special pujas, archanas, and abhishekams at your favorite temples</p>
+                                <a href="#" class="btn btn-primary px-4">Book Services</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Service Categories -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Our Services</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 service-card shadow-sm">
+                        <img src="images/services/vivaha.jpg" class="card-img-top" alt="Ceremonies" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Hindu Ceremonies</h5>
+                            <p class="card-text">Traditional ceremonies for all life stages, from birth to marriage and beyond.</p>
+                            <a href="priest-booking.html?serviceType=Ceremonies" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 service-card shadow-sm">
+                        <img src="images/services/satyanarayan_puja.jpg" class="card-img-top" alt="Pujas" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Pujas</h5>
+                            <p class="card-text">Sacred rituals to invoke divine blessings and positive energy.</p>
+                            <a href="priest-booking.html?serviceType=Pujas" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 service-card shadow-sm">
+                        <img src="images/services/priest.jpg" class="card-img-top" alt="Homas" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Homas</h5>
+                            <p class="card-text">Sacred fire ceremonies for prosperity, peace, and spiritual growth.</p>
+                            <a href="priest-booking.html?serviceType=Homas" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <h2 class="service-section-title text-center mb-4">Why Choose Our Services</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="fas fa-user-tie text-primary fa-3x"></i>
+                            </div>
+                            <h5 class="card-title">Experienced Priests</h5>
+                            <p class="card-text">Our priests have decades of experience performing authentic rituals with devotion and precision.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="fas fa-book text-primary fa-3x"></i>
+                            </div>
+                            <h5 class="card-title">Authentic Scriptures</h5>
+                            <p class="card-text">All rituals are performed according to sacred Vedic texts and traditional practices.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="fas fa-clock text-primary fa-3x"></i>
+                            </div>
+                            <h5 class="card-title">Timely Service</h5>
+                            <p class="card-text">We ensure punctual and reliable service for all your spiritual and religious needs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Services -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="service-section-title text-center mb-4">Featured Services</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                <!-- Naamakaranam -->
+                <div class="col">
+                    <div class="card h-100 service-card">
+                        <img src="images/services/naamkaranam.jpg" class="card-img-top" alt="Naamakaranam ceremony" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Naamakaranam</h5>
+                            <p class="card-text">Traditional naming ceremony for newborns with astrological guidance.</p>
+                            <a href="ceremony-details.html?ceremony=naamakaranam" class="btn btn-outline-primary btn-sm">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Griha Pravesham -->
+                <div class="col">
+                    <div class="card h-100 service-card">
+                        <img src="images/services/griha_pravesha.jpg" class="card-img-top" alt="Griha Pravesham ceremony" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Griha Pravesham</h5>
+                            <p class="card-text">House warming ceremony to bring prosperity and positive energy.</p>
+                            <a href="ceremony-details.html?ceremony=griha-pravesham" class="btn btn-outline-primary btn-sm">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Satyanarayan Puja -->
+                <div class="col">
+                    <div class="card h-100 service-card">
+                        <img src="images/services/satyanarayan_puja.jpg" class="card-img-top" alt="Satyanarayan Puja" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Satyanarayan Puja</h5>
+                            <p class="card-text">Sacred ritual to worship Lord Vishnu for prosperity and well-being.</p>
+                            <a href="ceremony-details.html?ceremony=satyanarayan-puja" class="btn btn-outline-primary btn-sm">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Upanayanam -->
+                <div class="col">
+                    <div class="card h-100 service-card">
+                        <img src="images/services/upanya.webp" class="card-img-top" alt="Upanayanam ceremony" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Upanayanam</h5>
+                            <p class="card-text">Sacred thread ceremony marking the beginning of Vedic education.</p>
+                            <a href="ceremony-details.html?ceremony=upanayanam" class="btn btn-outline-primary btn-sm">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="ceremonies.html" class="btn btn-primary">View All Ceremonies</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Events & Statistics -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Live Events -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h4 class="text-center mb-3">Watch Today's LIVE</h4>
+                            <div class="ratio ratio-16x9 mb-3">
+                                <img src="images/services/kumbabishegam.jpg" class="rounded" alt="Live Event">
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-danger"><i class="fas fa-play-circle me-2"></i>Watch Live</button>
+                            </div>
+                            <div class="text-center mt-3">
+                                <small class="text-muted">Abishekam & Archana at Vaideeshwaran Temple</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Statistics -->
+                <div class="col-lg-6">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="stats-box shadow-sm">
+                                <div class="stats-number">2250+</div>
+                                <div class="stats-label">Purohit Network</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stats-box shadow-sm">
+                                <div class="stats-number">1050+</div>
+                                <div class="stats-label">Daily Bookings</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stats-box shadow-sm">
+                                <div class="stats-number">195+</div>
+                                <div class="stats-label">Expert Pandits</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <h5 class="mb-3">Find the right services for you</h5>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Search for services...">
+                                    <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                                </div>
+                                <div class="d-flex flex-wrap">
+                                    <span class="badge bg-light text-dark m-1 p-2">Marriage</span>
+                                    <span class="badge bg-light text-dark m-1 p-2">Graha Shanti</span>
+                                    <span class="badge bg-light text-dark m-1 p-2">Navagraha</span>
+                                    <span class="badge bg-light text-dark m-1 p-2">Lakshmi Puja</span>
+                                    <span class="badge bg-light text-dark m-1 p-2">Satyanarayan</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ceremonies Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="section-header">
+                <h2>CEREMONIES</h2>
+                <a href="ceremonies.html" class="see-all">See All</a>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/vivaha.jpg" class="card-img-top rounded-4" alt="Marriage Ceremony">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Marriage</h6>
+                            <a href="priest-booking.html?serviceType=Ceremonies&serviceName=Marriage" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/naamkaranam.jpg" class="card-img-top rounded-4" alt="Naamkaranam">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Naamkaranam</h6>
+                            <a href="priest-booking.html?serviceType=Ceremonies&serviceName=Naamkaranam" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/nichyatram.jpg" class="card-img-top rounded-4" alt="Engagement">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Nichyatram</h6>
+                            <a href="priest-booking.html?serviceType=Ceremonies&serviceName=Nichyatram" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/griha_pravesha.jpg" class="card-img-top rounded-4" alt="Griha Pravesha">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Griha Pravesha</h6>
+                            <a href="priest-booking.html?serviceType=Ceremonies&serviceName=Griha%20Pravesha" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/upanya.webp" class="card-img-top rounded-4" alt="Upanayana">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Upanayana</h6>
+                            <a href="priest-booking.html?serviceType=Ceremonies&serviceName=Upanayana" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Homas Section -->
+    <section class="py-5 section-bg-purple">
+        <div class="container">
+            <div class="section-header">
+                <h2>HOMAS</h2>
+                <a href="homas.html" class="see-all">See All</a>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/satyanarayan_puja.jpg" class="card-img-top rounded-4" alt="Gayatri Homam">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Gayatri Homam</h6>
+                            <a href="priest-booking.html?serviceType=Homas&serviceName=Gayatri%20Homam" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/karan_vedha.jpg" class="card-img-top rounded-4" alt="Navagraha Homam">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Navagraha Homam</h6>
+                            <a href="priest-booking.html?serviceType=Homas&serviceName=Navagraha%20Homam" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/annaprasana.jpg" class="card-img-top rounded-4" alt="Chandi Homam">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Chandi Homam</h6>
+                            <a href="priest-booking.html?serviceType=Homas&serviceName=Chandi%20Homam" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/kumbabishegam.jpg" class="card-img-top rounded-4" alt="Ganapati Homam">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Ganapati Homam</h6>
+                            <a href="priest-booking.html?serviceType=Homas&serviceName=Ganapati%20Homam" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/aksharabhyasam.jpg" class="card-img-top rounded-4" alt="Mrityunjaya Homam">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Mrityunjaya Homam</h6>
+                            <a href="priest-booking.html?serviceType=Homas&serviceName=Mrityunjaya%20Homam" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-5 section-bg-light">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="mb-4">How It Works</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="how-it-works-item">
+                        <div class="how-it-works-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h5>Choose a Service</h5>
+                        <p class="small">Select from our wide range of authentic Vedic services</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="how-it-works-item">
+                        <div class="how-it-works-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h5>Book an Appointment</h5>
+                        <p class="small">Schedule at your convenient date and time</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="how-it-works-item">
+                        <div class="how-it-works-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h5>Make Payment</h5>
+                        <p class="small">Secure online payment to confirm your booking</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="how-it-works-item">
+                        <div class="how-it-works-icon">
+                            <i class="fas fa-pray"></i>
+                        </div>
+                        <h5>Receive Service</h5>
+                        <p class="small">Our priest will perform the ritual at your location</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Japam Section -->
+    <section class="py-5 section-bg-purple">
+        <div class="container">
+            <div class="section-header">
+                <h2>JAPAM</h2>
+                <a href="japam.html" class="see-all">See All</a>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/kumbabishegam.jpg" class="card-img-top rounded-4" alt="Maha Mrityunjaya Japam">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Maha Mrityunjaya</h6>
+                            <a href="priest-booking.html?serviceType=Japam&serviceName=Maha%20Mrityunjaya" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/vivaha.jpg" class="card-img-top rounded-4" alt="Gayatri Japam">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Gayatri Japam</h6>
+                            <a href="priest-booking.html?serviceType=Japam&serviceName=Gayatri%20Japam" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/satyanarayan_puja.jpg" class="card-img-top rounded-4" alt="Vishnu Sahasranamam">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Vishnu Sahasranamam</h6>
+                            <a href="priest-booking.html?serviceType=Japam&serviceName=Vishnu%20Sahasranamam" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/griha_pravesha.jpg" class="card-img-top rounded-4" alt="Shiva Panchakshari">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Shiva Panchakshari</h6>
+                            <a href="priest-booking.html?serviceType=Japam&serviceName=Shiva%20Panchakshari" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/naamkaranam.jpg" class="card-img-top rounded-4" alt="Lalitha Sahasranamam">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Lalitha Sahasranamam</h6>
+                            <a href="priest-booking.html?serviceType=Japam&serviceName=Lalitha%20Sahasranamam" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divine Pujas Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="section-header">
+                <h2>DIVINE PUJAS</h2>
+                <a href="pujas.html" class="see-all">See All</a>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/satyanarayan_puja.jpg" class="card-img-top rounded-4" alt="Ganesha Puja">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Ganesha Puja</h6>
+                            <a href="priest-booking.html?serviceType=Pujas&serviceName=Ganesha%20Puja" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/vivaha.jpg" class="card-img-top rounded-4" alt="Lakshmi Puja">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Lakshmi Puja</h6>
+                            <a href="priest-booking.html?serviceType=Pujas&serviceName=Lakshmi%20Puja" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/priest.jpg" class="card-img-top rounded-4" alt="Saraswathi Puja">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Saraswathi Puja</h6>
+                            <a href="priest-booking.html?serviceType=Pujas&serviceName=Saraswathi%20Puja" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/naamkaranam.jpg" class="card-img-top rounded-4" alt="Durga Puja">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Durga Puja</h6>
+                            <a href="priest-booking.html?serviceType=Pujas&serviceName=Durga%20Puja" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/kumbabishegam.jpg" class="card-img-top rounded-4" alt="Navagraha Puja">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Navagraha Puja</h6>
+                            <a href="priest-booking.html?serviceType=Pujas&serviceName=Navagraha%20Puja" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dance Services Section -->
+    <section class="py-5 section-bg-purple">
+        <div class="container">
+            <div class="section-header">
+                <h2>DANCE PERFORMANCES</h2>
+                <a href="dance.html" class="see-all">See All</a>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/dance/IMG-20241124-WA0040.jpg" class="card-img-top rounded-4" alt="Bharatanatyam">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Bharatanatyam</h6>
+                            <a href="dance.html#booking" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/dance/IMG-20241125-WA0016.jpg" class="card-img-top rounded-4" alt="Kuchipudi">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Kuchipudi</h6>
+                            <a href="dance.html#booking" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/dance/IMG-20241125-WA0030.jpg" class="card-img-top rounded-4" alt="Folk Dance">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Folk Dance</h6>
+                            <a href="dance.html#booking" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/dance/IMG-20241007-WA0004.jpg" class="card-img-top rounded-4" alt="Classical Dance">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Classical Dance</h6>
+                            <a href="dance.html#booking" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/dance/IMG-20241102-WA0017.jpg" class="card-img-top rounded-4" alt="Temple Dance">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Temple Dance</h6>
+                            <a href="dance.html#booking" class="btn btn-sm btn-primary mt-2">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="dance.html#video" class="btn btn-outline-primary"><i class="fas fa-play-circle me-2"></i>Watch Sample Performance</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Today's Panchang Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card panchang-card shadow">
+                        <div class="card-header bg-purple text-white py-3">
+                            <h4 class="m-0">Today's Panchang</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row align-items-center mb-3">
+                                <div class="col-4 text-center">
+                                    <h5 class="mb-0">May 25, 2024</h5>
+                                    <small class="text-muted">Friday • Indian Time</small>
+                                </div>
+                                <div class="col-8">
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-1">
+                                        <small>Sunrise: 05:45 AM</small>
+                                        <small>Sunset: 06:30 PM</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-4">
+                                    <div class="border rounded p-2 text-center">
+                                        <strong>Tithi</strong>
+                                        <p class="mb-0 small">Shukla Ekadashi</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="border rounded p-2 text-center">
+                                        <strong>Nakshatra</strong>
+                                        <p class="mb-0 small">Uttara Phalguni</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="border rounded p-2 text-center">
+                                        <strong>Yoga</strong>
+                                        <p class="mb-0 small">Siddha</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="border rounded p-2 text-center">
+                                        <strong>Karana</strong>
+                                        <p class="mb-0 small">Vishti</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="border rounded p-2 text-center">
+                                        <strong>Month (Amanta)</strong>
+                                        <p class="mb-0 small">Vaishakha</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="border rounded p-2 text-center">
+                                        <strong>Moon Sign</strong>
+                                        <p class="mb-0 small">Leo</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-4 mt-lg-0">
+                    <div class="card panchang-card shadow">
+                        <div class="card-header bg-purple text-white py-3">
+                            <h4 class="m-0">Sign Up For Priest Services Newsletter</h4>
+                        </div>
+                        <div class="card-body p-4">
+                            <p>Get special offers, event updates, and daily panchang directly in your inbox.</p>
+                            <form>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Name">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Email">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="tel" class="form-control" placeholder="Phone">
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Remedy Pujas Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="section-header">
+                <h2>REMEDY PUJAS</h2>
+                <a href="#" class="see-all">See All</a>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card service-card border-0 shadow-sm">
+                        <img src="images/services/satyanarayan_puja.jpg" class="card-img-top" alt="Ketu Dosha Puja" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Ketu Dosha Puja</h5>
+                            <p class="card-text small">Remove psychological problems and spiritual blockages</p>
+                            <a href="priest-booking.html?serviceType=Remedies&serviceName=Ketu%20Dosha%20Puja" class="btn btn-sm btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card service-card border-0 shadow-sm">
+                        <img src="images/services/vivaha.jpg" class="card-img-top" alt="Saturn Dosha Puja" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Saturn Dosha Puja</h5>
+                            <p class="card-text small">Alleviate delays, obstacles and chronic health issues</p>
+                            <a href="priest-booking.html?serviceType=Remedies&serviceName=Saturn%20Dosha%20Puja" class="btn btn-sm btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card service-card border-0 shadow-sm">
+                        <img src="images/services/kumbabishegam.jpg" class="card-img-top" alt="Rahu Dosha Puja" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Rahu Dosha Puja</h5>
+                            <p class="card-text small">Remove confusion, illusion and sudden obstacles</p>
+                            <a href="priest-booking.html?serviceType=Remedies&serviceName=Rahu%20Dosha%20Puja" class="btn btn-sm btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card service-card border-0 shadow-sm">
+                        <img src="images/services/naamkaranam.jpg" class="card-img-top" alt="Mangal Dosha Puja" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Mangal Dosha Puja</h5>
+                            <p class="card-text small">Resolve marital delays and relationship conflicts</p>
+                            <a href="priest-booking.html?serviceType=Remedies&serviceName=Mangal%20Dosha%20Puja" class="btn btn-sm btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card service-card border-0 shadow-sm">
+                        <img src="images/services/griha_pravesha.jpg" class="card-img-top" alt="Navagraha Dosha Puja" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Navagraha Dosha Puja</h5>
+                            <p class="card-text small">Balance all nine planetary influences in your life</p>
+                            <a href="priest-booking.html?serviceType=Remedies&serviceName=Navagraha%20Dosha%20Puja" class="btn btn-sm btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Vedic Priest Team -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">OUR VEDIC PRIEST TEAM</h2>
+            <div class="row">
+                <div class="col-md-4 col-lg-2 col-6 mb-4">
+                    <div class="priest-card">
+                        <img src="images/services/priest.jpg" alt="Pandit Sharma" class="priest-img">
+                        <h6>Pandit Sharma</h6>
+                        <p class="small text-muted mb-0">20+ years experience</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6 mb-4">
+                    <div class="priest-card">
+                        <img src="images/services/priest.jpg" alt="Pandit Joshi" class="priest-img">
+                        <h6>Pandit Joshi</h6>
+                        <p class="small text-muted mb-0">15+ years experience</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6 mb-4">
+                    <div class="priest-card">
+                        <img src="images/services/priest.jpg" alt="Pandit Iyengar" class="priest-img">
+                        <h6>Pandit Iyengar</h6>
+                        <p class="small text-muted mb-0">25+ years experience</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6 mb-4">
+                    <div class="priest-card">
+                        <img src="images/services/priest.jpg" alt="Pandit Trivedi" class="priest-img">
+                        <h6>Pandit Trivedi</h6>
+                        <p class="small text-muted mb-0">18+ years experience</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6 mb-4">
+                    <div class="priest-card">
+                        <img src="images/services/priest.jpg" alt="Pandit Acharya" class="priest-img">
+                        <h6>Pandit Acharya</h6>
+                        <p class="small text-muted mb-0">22+ years experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Holy Yatra & Temple Services -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-purple mb-3">HOLY YATRA</h3>
+                            <p>Embark on a spiritual journey to India's most sacred sites. Our guided yatras are designed for devotees seeking divine connection and spiritual transformation.</p>
+                            <div class="row g-3 mt-3">
+                                <div class="col-4">
+                                    <img src="images/services/griha_pravesha.jpg" alt="Chardham Yatra" class="img-fluid rounded">
+                                    <p class="small text-center mt-2">Chardham Yatra</p>
+                                </div>
+                                <div class="col-4">
+                                    <img src="images/services/vivaha.jpg" alt="Kashi Yatra" class="img-fluid rounded">
+                                    <p class="small text-center mt-2">Kashi Yatra</p>
+                                </div>
+                                <div class="col-4">
+                                    <img src="images/services/kumbabishegam.jpg" alt="Tirupati Yatra" class="img-fluid rounded">
+                                    <p class="small text-center mt-2">Tirupati Yatra</p>
+                                </div>
+                            </div>
+                            <div class="text-center mt-3">
+                                <a href="#" class="btn btn-primary">Explore All Yatras</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body p-4">
+                            <h3 class="card-title text-purple mb-3">REQUEST FOR TEMPLE SERVICES</h3>
+                            <p>Unable to visit temples in person? Let us perform pujas, archanas, and abhishekams on your behalf at renowned temples across India.</p>
+                            <form class="mt-3">
+                                <div class="mb-3">
+                                    <select class="form-select">
+                                        <option selected disabled>Select Temple</option>
+                                        <option>Tirupati Balaji Temple</option>
+                                        <option>Kashi Vishwanath Temple</option>
+                                        <option>Meenakshi Temple</option>
+                                        <option>Vaishno Devi Temple</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <select class="form-select">
+                                        <option selected disabled>Select Service Type</option>
+                                        <option>Abhishekam</option>
+                                        <option>Archana</option>
+                                        <option>Special Puja</option>
+                                        <option>Homam</option>
+                                    </select>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Request Service</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gemstones Section -->
+    <section class="py-5 section-bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>GEMSTONES</h2>
+                <a href="#" class="see-all">See All</a>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/satyanarayan_puja.jpg" class="card-img-top rounded-4" alt="Red Coral">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Red Coral</h6>
+                            <small class="text-muted d-block">For Mars / Mangal</small>
+                            <a href="#" class="btn btn-sm btn-primary mt-2">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/kumbabishegam.jpg" class="card-img-top rounded-4" alt="Pearl">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Pearl</h6>
+                            <small class="text-muted d-block">For Moon / Chandra</small>
+                            <a href="#" class="btn btn-sm btn-primary mt-2">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/priest.jpg" class="card-img-top rounded-4" alt="Yellow Sapphire">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Yellow Sapphire</h6>
+                            <small class="text-muted d-block">For Jupiter / Guru</small>
+                            <a href="#" class="btn btn-sm btn-primary mt-2">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/griha_pravesha.jpg" class="card-img-top rounded-4" alt="Emerald">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Emerald</h6>
+                            <small class="text-muted d-block">For Mercury / Budha</small>
+                            <a href="#" class="btn btn-sm btn-primary mt-2">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-2 col-6">
+                    <div class="card service-card border-0">
+                        <img src="images/services/naamkaranam.jpg" class="card-img-top rounded-4" alt="Blue Sapphire">
+                        <div class="card-body px-0 pt-2 text-center">
+                            <h6 class="card-title mb-0">Blue Sapphire</h6>
+                            <small class="text-muted d-block">For Saturn / Shani</small>
+                            <a href="#" class="btn btn-sm btn-primary mt-2">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">CUSTOMER TESTIMONIALS</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <div class="mb-3 text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h6>K.S Paramaanandan</h6>
+                        <p class="small">"I'm extremely happy with the service. The priest arrived on time, performed all rituals with proper explanations, and was very patient with our questions. I highly recommend their services for any religious ceremonies."</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <div class="mb-3 text-warning">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <h6>Vidya Madhavan</h6>
+                        <p class="small">"The booking process was seamless, and we were able to schedule a Satyanarayan puja at short notice. The priest was knowledgeable and guided us through the entire process. Our family felt truly blessed."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="purple-bg text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>SERVICES</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="ceremonies.html" class="text-white">Ceremonies</a></li>
+                        <li><a href="homas.html" class="text-white">Homas</a></li>
+                        <li><a href="japam.html" class="text-white">Japam</a></li>
+                        <li><a href="pujas.html" class="text-white">Pujas</a></li>
+                        <li><a href="#" class="text-white">Remedies & Rituals</a></li>
+                        <li><a href="#" class="text-white">Holy Yatra</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>LEGAL</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">About Us</a></li>
+                        <li><a href="#" class="text-white">Disclaimer</a></li>
+                        <li><a href="#" class="text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white">Return & Refund Policy</a></li>
+                        <li><a href="#" class="text-white">Security Policy</a></li>
+                        <li><a href="#" class="text-white">Shipment Policy</a></li>
+                        <li><a href="#" class="text-white">Terms and Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>SUPPORT</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Contact Us</a></li>
+                        <li><a href="mailto:support@priestservices.com" class="text-white">support@priestservices.com</a></li>
+                        <li><a href="tel:+919500095649" class="text-white">+91 9500095649</a></li>
+                        <li><a href="tel:+919500121086" class="text-white">+91 9500121086</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>PARTNER SITES</h5>
+                    <div class="partner-sites">
+                        <img src="images/partners.png" class="img-fluid" alt="Partner sites">
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p>© 2001-2025 Vaaak Sounds, Inc. - All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Icon -->
+    <div class="position-fixed bottom-0 end-0 p-3">
+        <div class="chat-icon bg-success text-white rounded-circle p-3">
+            <i class="fas fa-comment"></i>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Firebase JS -->
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Initialize Firebase
+        initializeFirebase();
+
+        // Authentication state observer
+        if (typeof firebase !== 'undefined') {
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    document.getElementById('accountBtn').innerHTML = '<i class="fas fa-user"></i> My Account';
+                    document.getElementById('accountBtn').href = 'profile.html';
+                } else {
+                    document.getElementById('accountBtn').innerHTML = '<i class="fas fa-user"></i> Login';
+                    document.getElementById('accountBtn').href = 'login.html';
+                }
+            });
+        }
+        
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const searchQuery = this.value.trim();
+                if (searchQuery) {
+                    window.location.href = `search-results.html?q=${encodeURIComponent(searchQuery)}`;
+                }
+            }
+        });
+        
+        // Update cart count
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('priestServicesCart') || '[]');
+            document.getElementById('cartCount').textContent = cart.length;
+        }
+        
+        // Call update cart on page load
+        updateCartCount();
+    </script>
+</body>
+</html>

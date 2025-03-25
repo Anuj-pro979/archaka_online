@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Priest Services</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/archaka.png" alt="Priest Services Logo" height="60">
+                    <span class="ms-2 fw-bold">Priest Services</span>
+                    <small class="d-block text-muted">Genuine vedic priest service at your Doorstep</small>
+                </a>
+                
+                <div class="d-flex align-items-center ms-auto me-2">
+                    <div class="position-relative">
+                        <input class="form-control rounded-pill" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                        <i class="fas fa-search position-absolute" style="right: 10px; top: 10px;"></i>
+                    </div>
+                </div>
+                
+                <div class="d-flex">
+                    <a href="cart.html" class="btn me-2 active">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span class="badge bg-primary rounded-pill ms-1" id="cartCount">0</span>
+                    </a>
+                    <a href="login.html" class="btn" id="accountBtn">
+                        <i class="fas fa-user"></i> Account
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Main Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark purple-bg">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="ceremonies.html">Ceremonies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="homas.html">Homas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="japam.html">Japam</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pujas.html">Pujas</a>
+                        </li>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Holy Yatra
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                <li><a class="dropdown-item" href="#">Temple Yatra</a></li>
+                                <li><a class="dropdown-item" href="#">Pilgrimage Packages</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Temple Services
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                <li><a class="dropdown-item" href="#">Temple Darshan</a></li>
+                                <li><a class="dropdown-item" href="#">Special Archana</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Products
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                                <li><a class="dropdown-item" href="#">Pooja Items</a></li>
+                                <li><a class="dropdown-item" href="#">Yantras</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="consultation.html">Free Pandit Consultation</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Free Tools
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown5">
+                                <li><a class="dropdown-item" href="#">Panchang</a></li>
+                                <li><a class="dropdown-item" href="#">Festival Calendar</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Cart Section -->
+    <section class="py-5">
+        <div class="container">
+            <h1 class="mb-4">Shopping Cart</h1>
+            
+            <!-- Cart Items -->
+            <div id="cartItemsContainer">
+                <!-- Empty Cart Message - Initially hidden -->
+                <div id="emptyCartMessage" class="text-center py-5 d-none">
+                    <img src="images/empty-cart.svg" alt="Empty Cart" class="img-fluid mb-4" style="max-width: 200px;">
+                    <h3>Your cart is empty</h3>
+                    <p class="text-muted">Looks like you haven't added any ceremonies to your cart yet.</p>
+                    <a href="ceremonies.html" class="btn btn-primary mt-3">Browse Ceremonies</a>
+                </div>
+                
+                <!-- Loading Spinner -->
+                <div id="cartSpinner" class="text-center py-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Loading your cart...</p>
+                </div>
+                
+                <!-- Cart Items List - Initially hidden -->
+                <div id="cartItemsList" class="d-none">
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th scope="col" width="50%">Item</th>
+                                    <th scope="col" class="text-center">Priest</th>
+                                    <th scope="col" class="text-center">Date</th>
+                                    <th scope="col" class="text-end">Price</th>
+                                    <th scope="col" class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cartItemsBody">
+                                <!-- Cart items will be dynamically added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Cart Summary -->
+                    <div class="card shadow-sm mt-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="couponCode" class="form-label">Have a coupon code?</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="couponCode" placeholder="Enter coupon code">
+                                            <button class="btn btn-outline-primary" type="button" id="applyCouponBtn">Apply</button>
+                                        </div>
+                                        <div id="couponMessage" class="form-text text-success d-none">Coupon applied successfully!</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Subtotal</span>
+                                        <span id="subtotal">₹0.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Service Fee</span>
+                                        <span id="serviceFee">₹0.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>GST (18%)</span>
+                                        <span id="taxAmount">₹0.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2 text-success d-none" id="discountRow">
+                                        <span>Discount</span>
+                                        <span id="discountAmount">-₹0.00</span>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <h5>Total</h5>
+                                        <h5 id="totalAmount">₹0.00</h5>
+                                    </div>
+                                    <div class="d-grid gap-2 mt-3">
+                                        <button class="btn btn-primary py-2" id="checkoutBtn">Proceed to Checkout</button>
+                                        <a href="ceremonies.html" class="btn btn-outline-secondary">Continue Shopping</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Recommended Section -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <h3 class="mb-4">Recommended For You</h3>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="recommendedItems">
+                <!-- Recommended items will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="purple-bg text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>SERVICES</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="ceremonies.html" class="text-white">Ceremonies</a></li>
+                        <li><a href="homas.html" class="text-white">Homas</a></li>
+                        <li><a href="japam.html" class="text-white">Japam</a></li>
+                        <li><a href="pujas.html" class="text-white">Pujas</a></li>
+                        <li><a href="#" class="text-white">Remedies & Rituals</a></li>
+                        <li><a href="#" class="text-white">Holy Yatra</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>LEGAL</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">About Us</a></li>
+                        <li><a href="#" class="text-white">Disclaimer</a></li>
+                        <li><a href="#" class="text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white">Return & Refund Policy</a></li>
+                        <li><a href="#" class="text-white">Security Policy</a></li>
+                        <li><a href="#" class="text-white">Shipment Policy</a></li>
+                        <li><a href="#" class="text-white">Terms and Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>SUPPORT</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Contact Us</a></li>
+                        <li><a href="mailto:support@priestservices.com" class="text-white">support@priestservices.com</a></li>
+                        <li><a href="tel:+919500095649" class="text-white">+91 9500095649</a></li>
+                        <li><a href="tel:+919500121086" class="text-white">+91 9500121086</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>PARTNER SITES</h5>
+                    <div class="partner-sites">
+                        <img src="images/partners.png" class="img-fluid" alt="Partner sites">
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p>© 2001-2025 Vaaak Sounds, Inc. - All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Icon -->
+    <div class="position-fixed bottom-0 end-0 p-3">
+        <div class="chat-icon bg-success text-white rounded-circle p-3">
+            <i class="fas fa-comment"></i>
+        </div>
+    </div>
+
+    <!-- Remove Item Confirmation Modal -->
+    <div class="modal fade" id="removeItemModal" tabindex="-1" aria-labelledby="removeItemModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="removeItemModalLabel">Remove Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to remove this item from your cart?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmRemoveBtn">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Firebase JS -->
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore-compat.js"></script>
+    <!-- Custom JS -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html> 

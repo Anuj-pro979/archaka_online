@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Details - Archaka</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/service-cards.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/archaka.png" alt="Archaka Logo" height="40" class="me-2">
+                Archaka
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ceremonies.html">Ceremonies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pujas.html">Pujas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="homas.html">Homas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="japam.html">Japam</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="position-relative me-3">
+                        <a href="cart.html" class="text-white">
+                            <i class="fas fa-shopping-cart fa-lg"></i>
+                            <span class="cart-badge" id="cartCount">0</span>
+                        </a>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle d-flex align-items-center text-white text-decoration-none" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://via.placeholder.com/32" alt="User" id="navProfileImage" width="32" height="32" class="rounded-circle me-2">
+                            <span id="navUserName">Guest</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="login.html"><i class="fas fa-sign-in-alt me-2"></i> Login</a></li>
+                            <li><a class="dropdown-item" href="register.html"><i class="fas fa-user-plus me-2"></i> Register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Service Details Main Section -->
+    <section class="py-5">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item" id="serviceTypeLink"><a href="#" id="serviceTypeLinkHref">Service Type</a></li>
+                    <li class="breadcrumb-item active" aria-current="page" id="serviceName">Service Name</li>
+                </ol>
+            </nav>
+
+            <div class="row">
+                <!-- Service Image -->
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <div class="service-image-container">
+                        <img src="images/services/satyanarayan_puja.jpg" id="serviceImage" class="img-fluid rounded" alt="Service Image">
+                    </div>
+                </div>
+                
+                <!-- Service Details -->
+                <div class="col-md-7">
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="row g-0">
+                            <div class="col-md-7">
+                                <div class="card-body">
+                                    <h1 class="card-title" id="serviceTitle">Service Name</h1>
+                                    <div class="mb-3">
+                                        <span class="badge bg-success me-2" id="serviceTypeTag">Service Type</span>
+                                        <div class="d-inline text-warning">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span class="text-muted">(4.7/5)</span>
+                                        </div>
+                                    </div>
+                                    <p class="card-text" id="serviceDescription">Service description will be displayed here.</p>
+                                    <div id="serviceBenefits" class="mb-3">
+                                        <h5>Benefits:</h5>
+                                        <p id="benefitsText">Benefits will be displayed here.</p>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="#booking" class="btn btn-primary">
+                                            <i class="fas fa-calendar-alt me-2"></i>Book Now
+                                        </a>
+                                        <button class="btn btn-outline-primary" id="shareBtn">
+                                            <i class="fas fa-share-alt me-2"></i>Share
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service Details Tabs -->
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <ul class="nav nav-tabs" id="serviceDetailTabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="true">Overview</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="procedure-tab" data-bs-toggle="tab" data-bs-target="#procedure" type="button" role="tab" aria-controls="procedure" aria-selected="false">Procedure</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="materials-tab" data-bs-toggle="tab" data-bs-target="#materials" type="button" role="tab" aria-controls="materials" aria-selected="false">Materials</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="faqs-tab" data-bs-toggle="tab" data-bs-target="#faqs" type="button" role="tab" aria-controls="faqs" aria-selected="false">FAQs</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content mt-3" id="serviceDetailTabContent">
+                                <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                                    <h4>About this service</h4>
+                                    <p id="overviewText">This section will provide a detailed overview of the service and its significance.</p>
+                                </div>
+                                <div class="tab-pane fade" id="procedure" role="tabpanel" aria-labelledby="procedure-tab">
+                                    <h4>Procedure</h4>
+                                    <ol id="procedureList">
+                                        <li>The procedure steps will be listed here</li>
+                                        <li>Each step will be described in detail</li>
+                                        <li>The procedure may vary depending on the service type</li>
+                                    </ol>
+                                </div>
+                                <div class="tab-pane fade" id="materials" role="tabpanel" aria-labelledby="materials-tab">
+                                    <h4>Required Materials</h4>
+                                    <p>The following materials are required for this service:</p>
+                                    <ul id="materialsList">
+                                        <li>Required materials will be listed here</li>
+                                        <li>Most materials will be provided by our priests</li>
+                                        <li>Additional materials may need to be arranged by the devotee</li>
+                                    </ul>
+                                    <p class="text-success"><i class="fas fa-check-circle me-2"></i>Our priests will bring most of the required materials.</p>
+                                </div>
+                                <div class="tab-pane fade" id="faqs" role="tabpanel" aria-labelledby="faqs-tab">
+                                    <h4>Frequently Asked Questions</h4>
+                                    <div class="accordion" id="faqAccordion">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="faqHeadingOne">
+                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseOne" aria-expanded="true" aria-controls="faqCollapseOne">
+                                                    How long does this service take?
+                                                </button>
+                                            </h2>
+                                            <div id="faqCollapseOne" class="accordion-collapse collapse show" aria-labelledby="faqHeadingOne" data-bs-parent="#faqAccordion">
+                                                <div class="accordion-body">
+                                                    The duration varies depending on the specific requirements and the scale of the service. On average, it takes between 1-3 hours.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="faqHeadingTwo">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseTwo" aria-expanded="false" aria-controls="faqCollapseTwo">
+                                                    Can I customize this service?
+                                                </button>
+                                            </h2>
+                                            <div id="faqCollapseTwo" class="accordion-collapse collapse" aria-labelledby="faqHeadingTwo" data-bs-parent="#faqAccordion">
+                                                <div class="accordion-body">
+                                                    Yes, we offer customization options based on family traditions, preferences, and specific requirements. Please discuss your needs with our priests during booking.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="faqHeadingThree">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseThree" aria-expanded="false" aria-controls="faqCollapseThree">
+                                                    What preparations should I make at home?
+                                                </button>
+                                            </h2>
+                                            <div id="faqCollapseThree" class="accordion-collapse collapse" aria-labelledby="faqHeadingThree" data-bs-parent="#faqAccordion">
+                                                <div class="accordion-body">
+                                                    We recommend cleaning the space where the service will be performed and arranging a clean floor mat or carpet. Our priests will guide you on specific preparations needed for your chosen service.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Booking Information Section -->
+                <div class="col-md-4" id="booking">
+                    <div class="card border-0 shadow-sm sticky-top" style="top: 20px;">
+                        <div class="card-header bg-white">
+                            <h4 class="mb-0">Book This Service</h4>
+                        </div>
+                        <div class="card-body">
+                            <form id="bookingForm">
+                                <!-- Date Picker -->
+                                <div class="mb-3">
+                                    <label for="serviceDate" class="form-label">Select Date</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                        <input type="text" class="form-control" id="serviceDate" placeholder="Select a date" readonly>
+                                    </div>
+                                </div>
+                                
+                                <!-- Time Slot Picker -->
+                                <div class="mb-3">
+                                    <label for="serviceTime" class="form-label">Select Time</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                                        <select class="form-select" id="serviceTime">
+                                            <option value="">Select a time slot</option>
+                                        </select>
+                                    </div>
+                                    <small class="form-text text-muted">Available time slots are shown based on priests' availability</small>
+                                </div>
+                                
+                                <!-- Location Type -->
+                                <div class="mb-3">
+                                    <label for="locationType" class="form-label">Location</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                        <select class="form-select" id="locationType">
+                                            <option value="">Select location type</option>
+                                            <option value="home">At Home</option>
+                                            <option value="temple">At Temple</option>
+                                            <option value="venue">At Other Venue</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <!-- Address Input (conditional) -->
+                                <div class="mb-3 d-none" id="addressInputContainer">
+                                    <label for="addressInput" class="form-label">Location Details</label>
+                                    <div class="mb-2">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="locationMethod" id="manualAddress" value="manual" checked>
+                                            <label class="form-check-label" for="manualAddress">Enter Manually</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="locationMethod" id="liveLocation" value="live">
+                                            <label class="form-check-label" for="liveLocation">Use Live Location</label>
+                                        </div>
+                                    </div>
+                                    <div id="manualAddressContainer">
+                                        <textarea class="form-control" id="addressInput" rows="3" placeholder="Enter your full address"></textarea>
+                                    </div>
+                                    <div id="liveLocationContainer" class="d-none">
+                                        <div class="d-grid mb-2">
+                                            <button type="button" id="detectLocationBtn" class="btn btn-outline-primary">
+                                                <i class="fas fa-location-arrow me-2"></i>Detect My Location
+                                            </button>
+                                        </div>
+                                        <div id="detectedLocationDisplay" class="alert alert-info d-none">
+                                            <i class="fas fa-map-marker-alt me-2"></i><span id="detectedLocationText"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Book Now Button -->
+                                <button type="button" id="bookNowBtn" class="btn btn-primary w-100 py-2">
+                                    <i class="fas fa-calendar-check me-2"></i>Find Available Priests
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Services -->
+                    <div class="card border-0 shadow-sm mt-4">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0">Related Services</h5>
+                        </div>
+                        <div class="card-body p-3">
+                            <div class="row row-cols-1 g-3" id="relatedServicesContainer">
+                                <!-- Related services will be inserted here dynamically -->
+                                <div class="col">
+                                    <div class="d-flex align-items-center p-2 border rounded">
+                                        <img src="images/placeholder.jpg" alt="Related Service" class="rounded me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                        <div>
+                                            <h6 class="mb-1">Related Service 1</h6>
+                                            <a href="#" class="text-decoration-none">View details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="purple-bg text-white py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>SERVICES</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="ceremonies.html" class="text-white">Ceremonies</a></li>
+                        <li><a href="homas.html" class="text-white">Homas</a></li>
+                        <li><a href="japam.html" class="text-white">Japam</a></li>
+                        <li><a href="pujas.html" class="text-white">Pujas</a></li>
+                        <li><a href="#" class="text-white">Remedies & Rituals</a></li>
+                        <li><a href="#" class="text-white">Holy Yatra</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>LEGAL</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">About Us</a></li>
+                        <li><a href="#" class="text-white">Disclaimer</a></li>
+                        <li><a href="#" class="text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white">Return & Refund Policy</a></li>
+                        <li><a href="#" class="text-white">Security Policy</a></li>
+                        <li><a href="#" class="text-white">Shipment Policy</a></li>
+                        <li><a href="#" class="text-white">Terms and Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>SUPPORT</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Contact Us</a></li>
+                        <li><a href="mailto:support@priestservices.com" class="text-white">support@priestservices.com</a></li>
+                        <li><a href="tel:+919500095649" class="text-white">+91 9500095649</a></li>
+                        <li><a href="tel:+919500121086" class="text-white">+91 9500121086</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>PARTNER SITES</h5>
+                    <div class="partner-sites">
+                        <img src="images/partners.png" class="img-fluid" alt="Partner sites">
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p>© 2001-2025 Vaaak Sounds, Inc. - All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Share Modal -->
+    <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="shareModalLabel">Share This Service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="#" class="btn btn-outline-primary rounded-circle p-3 share-btn" data-platform="facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-info rounded-circle p-3 share-btn" data-platform="twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-success rounded-circle p-3 share-btn" data-platform="whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-secondary rounded-circle p-3 share-btn" data-platform="email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                    <div class="mt-4">
+                        <label for="shareLink" class="form-label">Copy link</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="shareLink" readonly>
+                            <button class="btn btn-outline-secondary" type="button" id="copyLinkBtn">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Icon -->
+    <div class="position-fixed bottom-0 end-0 p-3">
+        <div class="chat-icon bg-success text-white rounded-circle p-3">
+            <i class="fas fa-comment"></i>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Firebase JS -->
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore-compat.js"></script>
+    <!-- Custom JS -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/services-data.js"></script>
+    <script src="js/service-details.js"></script>
+</body>
+</html> 

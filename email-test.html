@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priest Registration Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .success-message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .error-message {
+            display: none;
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Priest Registration Test</h1>
+        <form id="registration-form">
+            <input type="hidden" name="registration_id" id="registration_id">
+            
+            <div class="form-group">
+                <label for="full_name">Full Name</label>
+                <input type="text" id="full_name" name="full_name" value="kota anuj kumar" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="from_email">Email</label>
+                <input type="email" id="from_email" name="from_email" value="kotaanuj9@gmail.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" id="phone" name="phone" value="7155955115" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" value="1990-01-01" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea id="address" name="address" required>Srija homes, Unnamed Road, Deendayal Nagar Colony, Postal Colony, Subedari, Hanamkonda, Telangana 506001</textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="city_state">City/State</label>
+                <input type="text" id="city_state" name="city_state" value="warangal" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" id="country" name="country" value="India" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="experience">Experience (years)</label>
+                <input type="text" id="experience" name="experience" value="5" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="qualification">Qualification</label>
+                <input type="text" id="qualification" name="qualification" value="vedic studies" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="languages">Languages</label>
+                <input type="text" id="languages" name="languages" value="Telugu, Hindi, English" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="specializations">Specializations</label>
+                <input type="text" id="specializations" name="specializations" value="Marriage, Homam, Grihapravesam" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="availability">Availability</label>
+                <select id="availability" name="availability" required>
+                    <option value="Weekends only">Weekends only</option>
+                    <option value="Weekdays only">Weekdays only</option>
+                    <option value="All days" selected>All days</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="travel_distance">Travel Distance (km)</label>
+                <input type="number" id="travel_distance" name="travel_distance" value="25" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="bio">Bio</label>
+                <textarea id="bio" name="bio" required>I am an experienced priest specializing in traditional rituals and ceremonies.</textarea>
+            </div>
+            
+            <button type="submit">Register</button>
+        </form>
+        
+        <div class="success-message" id="success-message">
+            Your registration has been submitted successfully!
+        </div>
+        
+        <div class="error-message" id="error-message">
+            Sorry, there was an error processing your registration. Please try again.
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // EmailJS initialization with your public key
+            function initEmailJS() {
+                emailjs.init("ulDLogj4en_CQ0QbW");
+            }
+            
+            // Generate a random registration ID
+            function generateRegistrationId() {
+                return Math.floor(100000 + Math.random() * 900000); // 6-digit number
+            }
+            
+            // Format current date
+            function formatDate() {
+                const date = new Date();
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                return date.toLocaleDateString('en-IN', options);
+            }
+            
+            window.onload = function() {
+                initEmailJS();
+                
+                document.getElementById('registration_id').value = generateRegistrationId();
+                
+                document.getElementById('registration-form').addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    // Get form values
+                    const registrationId = document.getElementById('registration_id').value;
+                    const fullName = document.getElementById('full_name').value;
+                    const email = document.getElementById('from_email').value;
+                    const phone = document.getElementById('phone').value;
+                    const dob = document.getElementById('dob').value;
+                    const address = document.getElementById('address').value;
+                    const cityState = document.getElementById('city_state').value;
+                    const country = document.getElementById('country').value;
+                    const experience = document.getElementById('experience').value;
+                    const qualification = document.getElementById('qualification').value;
+                    const languages = document.getElementById('languages').value;
+                    const specializations = document.getElementById('specializations').value;
+                    const availability = document.getElementById('availability').value;
+                    const travelDistance = document.getElementById('travel_distance').value;
+                    const bio = document.getElementById('bio').value;
+                    
+                    // Create template parameters object
+                    const templateParams = {
+                        registration_date: formatDate(),
+                        full_name: fullName,
+                        from_email: email,
+                        phone: phone,
+                        dob: dob,
+                        address: address,
+                        city_state: cityState,
+                        country: country,
+                        experience: experience + " years",
+                        qualification: qualification,
+                        languages: languages,
+                        specializations: specializations,
+                        availability: availability,
+                        travel_distance: travelDistance + " km",
+                        bio: bio,
+                        registration_id: registrationId,
+                        email: email,
+                        name: fullName
+                    };
+                    
+                    console.log("Sending email with params:", templateParams);
+                    
+                    // Send email directly using EmailJS
+                    emailjs.send("service_s96mtoa", "template_5shmzra", templateParams)
+                        .then(function(response) {
+                            console.log("SUCCESS", response);
+                            document.getElementById('success-message').style.display = 'block';
+                            document.getElementById('error-message').style.display = 'none';
+                        }, function(error) {
+                            console.log("FAILED", error);
+                            document.getElementById('error-message').style.display = 'block';
+                            document.getElementById('success-message').style.display = 'none';
+                        });
+                });
+            };
+        })();
+    </script>
+</body>
+</html> 

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dance Services - Classical & Folk Dance Performances</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/service-cards.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/archaka.png" alt="Priest Services Logo" height="60">
+                    <span class="ms-2 fw-bold">Priest Services</span>
+                    <small class="d-block text-muted">Genuine vedic priest service at your Doorstep</small>
+                </a>
+                
+                <div class="d-flex align-items-center ms-auto me-2">
+                    <div class="position-relative">
+                        <input class="form-control rounded-pill" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                        <i class="fas fa-search position-absolute" style="right: 10px; top: 10px;"></i>
+                    </div>
+                </div>
+                
+                <div class="d-flex">
+                    <a href="cart.html" class="btn me-2">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span class="badge bg-primary rounded-pill ms-1" id="cartCount">0</span>
+                    </a>
+                    <a href="login.html" class="btn" id="accountBtn">
+                        <i class="fas fa-user"></i> Account
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Main Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark purple-bg">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ceremonies.html">Ceremonies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="homas.html">Homas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="japam.html">Japam</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pujas.html">Pujas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="dance.html">Dance</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Holy Yatra
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                <li><a class="dropdown-item" href="#">Temple Yatra</a></li>
+                                <li><a class="dropdown-item" href="#">Pilgrimage Packages</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Temple Services
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                <li><a class="dropdown-item" href="#">Temple Darshan</a></li>
+                                <li><a class="dropdown-item" href="#">Special Archana</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="consultation.html">Free Pandit Consultation</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner py-5" style="background-image: url('images/dance/IMG-20241123-WA0064.jpg'); background-size: cover; background-position: center;">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="bg-white bg-opacity-75 p-4 rounded">
+                        <h1 class="display-4 fw-bold text-primary">Classical & Folk Dance Performances</h1>
+                        <p class="lead">Experience the divine through traditional dance forms that narrate ancient stories and cultural heritage.</p>
+                        <a href="#dance-services" class="btn btn-primary btn-lg">Explore Dance Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="bg-light py-2">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Dance Services</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Dance Services Introduction -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="fw-bold mb-4">Traditional Dance Services</h2>
+                    <p>Our dance services bring the rich cultural heritage of India to your special occasions through authentic classical and folk dance performances. Each performance is meticulously choreographed and performed by trained dancers who embody the spiritual essence of these ancient art forms.</p>
+                    <p>Whether you're celebrating a wedding, religious ceremony, cultural event, or corporate function, our dance performances add a divine touch to your occasion.</p>
+                    <div class="d-flex gap-2 mt-4">
+                        <a href="#booking" class="btn btn-primary">Book a Performance</a>
+                        <a href="#video" class="btn btn-outline-primary">Watch Sample Performance</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <img src="images/dance/IMG-20241007-WA0004.jpg" alt="Classical Dance" class="img-fluid rounded shadow-sm">
+                        </div>
+                        <div class="col-6">
+                            <img src="images/dance/IMG-20241007-WA0005.jpg" alt="Folk Dance" class="img-fluid rounded shadow-sm">
+                        </div>
+                        <div class="col-6">
+                            <img src="images/dance/IMG-20241102-WA0017.jpg" alt="Temple Dance" class="img-fluid rounded shadow-sm">
+                        </div>
+                        <div class="col-6">
+                            <img src="images/dance/IMG-20241123-WA0060.jpg" alt="Cultural Dance" class="img-fluid rounded shadow-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dance Types -->
+    <section id="dance-services" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5">Our Dance Offerings</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                <!-- Bharatanatyam -->
+                <div class="col">
+                    <div class="card h-100 service-card shadow-sm">
+                        <img src="images/dance/IMG-20241124-WA0040.jpg" class="card-img-top" alt="Bharatanatyam" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Bharatanatyam</h5>
+                            <p class="card-text">Classical dance form from Tamil Nadu that combines expressions, music, and rhythmic footwork to narrate divine stories.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Solo performances</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Group choreography</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Thematic presentations</li>
+                            </ul>
+                            <a href="#booking" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kuchipudi -->
+                <div class="col">
+                    <div class="card h-100 service-card shadow-sm">
+                        <img src="images/dance/IMG-20241125-WA0016.jpg" class="card-img-top" alt="Kuchipudi" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Kuchipudi</h5>
+                            <p class="card-text">Graceful dance form from Andhra Pradesh known for its quick rhythmic footwork and expressive storytelling.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Traditional performances</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Contemporary adaptations</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Mythological narratives</li>
+                            </ul>
+                            <a href="#booking" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Folk Dances -->
+                <div class="col">
+                    <div class="card h-100 service-card shadow-sm">
+                        <img src="images/dance/IMG-20241125-WA0030.jpg" class="card-img-top" alt="Folk Dances" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">Folk Dances</h5>
+                            <p class="card-text">Vibrant regional dance forms that celebrate festivals, harvests, and cultural traditions across India.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Garba & Dandiya</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Bhangra & Giddha</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Regional folk styles</li>
+                            </ul>
+                            <a href="#booking" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="py-5">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5">Watch Our Performances</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow">
+                        <div class="card-body p-0">
+                            <div class="ratio ratio-16x9">
+                                <video controls poster="images/dance/IMG-20241218-WA0006.jpg" class="rounded">
+                                    <source src="images/dance/InShot_20250218_220033655.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <div class="p-3">
+                                <h5>Classical Dance Performance</h5>
+                                <p class="text-muted mb-0">A sample of our traditional dance performances showcasing the grace and spiritual essence of Indian classical dance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="fw-bold mb-4">Book a Dance Performance</h2>
+                    <p class="mb-5">Fill out the form below to inquire about our dance services for your upcoming event.</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow">
+                        <div class="card-body p-4">
+                            <form id="danceBookingForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="name" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="name" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="phone" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="phone" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="eventDate" class="form-label">Event Date</label>
+                                        <input type="date" class="form-control" id="eventDate" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="danceType" class="form-label">Dance Type</label>
+                                        <select class="form-select" id="danceType" required>
+                                            <option value="" selected disabled>Select Dance Type</option>
+                                            <option value="bharatanatyam">Bharatanatyam</option>
+                                            <option value="kuchipudi">Kuchipudi</option>
+                                            <option value="folk">Folk Dances</option>
+                                            <option value="mixed">Mixed Performance</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="performers" class="form-label">Number of Performers</label>
+                                        <select class="form-select" id="performers" required>
+                                            <option value="" selected disabled>Select Number</option>
+                                            <option value="1">Solo (1 dancer)</option>
+                                            <option value="2-3">Small Group (2-3 dancers)</option>
+                                            <option value="4-6">Medium Group (4-6 dancers)</option>
+                                            <option value="7+">Large Group (7+ dancers)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="eventDetails" class="form-label">Event Details</label>
+                                        <textarea class="form-control" id="eventDetails" rows="3" placeholder="Please provide details about your event, venue, and any specific requirements"></textarea>
+                                    </div>
+                                    <div class="col-12 text-center mt-4">
+                                        <button type="submit" class="btn btn-primary btn-lg px-5">Submit Inquiry</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5">What Our Clients Say</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="flex-shrink-0">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <span class="fw-bold">RK</span>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="mb-0">Rajesh Kumar</h5>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p>"The Bharatanatyam performance at our daughter's wedding was absolutely mesmerizing. The dancers were incredibly talented and brought such grace and spirituality to our celebration."</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="flex-shrink-0">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <span class="fw-bold">SP</span>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="mb-0">Sunita Patel</h5>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p>"We hired the folk dance group for our corporate Diwali celebration, and they were outstanding! Our employees were thrilled with the energetic performance that got everyone in the festive spirit."</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="flex-shrink-0">
+                                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <span class="fw-bold">AM</span>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h5 class="mb-0">Arun Mehta</h5>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p>"The Kuchipudi performance for our temple inauguration was divine. The dancers' expressions and movements perfectly captured the spiritual essence of the occasion. Highly recommended!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-4">About Us</h5>
+                    <p class="small">We provide authentic Vedic services including ceremonies, pujas, homas, and traditional dance performances for all your spiritual and cultural needs.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-white">Home</a></li>
+                        <li class="mb-2"><a href="ceremonies.html" class="text-white">Ceremonies</a></li>
+                        <li class="mb-2"><a href="pujas.html" class="text-white">Pujas</a></li>
+                        <li class="mb-2"><a href="homas.html" class="text-white">Homas</a></li>
+                        <li class="mb-2"><a href="dance.html" class="text-white">Dance</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-4">Contact Info</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> 123 Temple Street, Chennai, TN</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +91 98765 43210</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@priestservices.com</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-4">Newsletter</h5>
+                    <p class="small">Subscribe to our newsletter for updates on services and upcoming events.</p>
+                    <form>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Your Email" aria-label="Your Email">
+                            <button class="btn btn-primary" type="button">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6 small">
+                    <p class="mb-0">&copy; 2025 Priest Services. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end small">
+                    <a href="#" class="text-white me-3">Privacy Policy</a>
+                    <a href="#" class="text-white me-3">Terms of Service</a>
+                    <a href="#" class="text-white">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    <script>
+        // Simple form submission handler
+        document.getElementById('danceBookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your inquiry! We will contact you shortly to discuss your dance performance requirements.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

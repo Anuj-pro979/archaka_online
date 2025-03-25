@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Priests - Priest Services</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/archaka.png" alt="Priest Services Logo" height="60">
+                    <span class="ms-2 fw-bold">Priest Services</span>
+                    <small class="d-block text-muted">Genuine vedic priest service at your Doorstep</small>
+                </a>
+                
+                <div class="d-flex align-items-center ms-auto me-2">
+                    <div class="position-relative">
+                        <input class="form-control rounded-pill" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                        <i class="fas fa-search position-absolute" style="right: 10px; top: 10px;"></i>
+                    </div>
+                </div>
+                
+                <div class="d-flex">
+                    <a href="cart.html" class="btn me-2">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                    </a>
+                    <a href="login.html" class="btn" id="accountBtn">
+                        <i class="fas fa-user"></i> Account
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Main Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark purple-bg">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="ceremonies.html">Ceremonies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="homas.html">Homas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="japam.html">Japam</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pujas.html">Pujas</a>
+                        </li>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Holy Yatra
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                <li><a class="dropdown-item" href="#">Temple Yatra</a></li>
+                                <li><a class="dropdown-item" href="#">Pilgrimage Packages</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Temple Services
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                <li><a class="dropdown-item" href="#">Temple Darshan</a></li>
+                                <li><a class="dropdown-item" href="#">Special Archana</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Products
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                                <li><a class="dropdown-item" href="#">Pooja Items</a></li>
+                                <li><a class="dropdown-item" href="#">Yantras</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="consultation.html">Free Pandit Consultation</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Free Tools
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown5">
+                                <li><a class="dropdown-item" href="#">Panchang</a></li>
+                                <li><a class="dropdown-item" href="#">Festival Calendar</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="display-4 fw-bold mb-4">Our Expert Priests</h1>
+                    <p class="lead mb-4">Discover our team of experienced and knowledgeable priests specializing in various Vedic rituals and ceremonies.</p>
+                    <p class="mb-4">All our priests are thoroughly vetted and have years of experience performing traditional ceremonies with authenticity and precision.</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="images/priests-hero.jpg" alt="Priest Services" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-4 border-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-3 mb-md-0">
+                    <label for="specialtyFilter" class="form-label">Filter by Specialty</label>
+                    <select class="form-select" id="specialtyFilter">
+                        <option value="all">All Specialties</option>
+                        <option value="naamakaranam">Naamakaranam</option>
+                        <option value="annaprasana">Annaprasana</option>
+                        <option value="upanayanam">Upanayanam</option>
+                        <option value="wedding">Wedding Ceremonies</option>
+                        <option value="gruhapravesam">Gruhapravesam</option>
+                        <option value="satyanarayan">Satyanarayan Puja</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3 mb-md-0">
+                    <label for="locationFilter" class="form-label">Filter by Location</label>
+                    <select class="form-select" id="locationFilter">
+                        <option value="all">All Locations</option>
+                        <option value="chennai">Chennai</option>
+                        <option value="bangalore">Bangalore</option>
+                        <option value="hyderabad">Hyderabad</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="mumbai">Mumbai</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3 mb-md-0">
+                    <label for="languageFilter" class="form-label">Filter by Language</label>
+                    <select class="form-select" id="languageFilter">
+                        <option value="all">All Languages</option>
+                        <option value="tamil">Tamil</option>
+                        <option value="telugu">Telugu</option>
+                        <option value="kannada">Kannada</option>
+                        <option value="hindi">Hindi</option>
+                        <option value="sanskrit">Sanskrit</option>
+                        <option value="english">English</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="sortFilter" class="form-label">Sort By</label>
+                    <select class="form-select" id="sortFilter">
+                        <option value="relevance">Relevance</option>
+                        <option value="rating-high">Rating: High to Low</option>
+                        <option value="experience-high">Experience: High to Low</option>
+                        <option value="name-asc">Name: A to Z</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Priests Listing Section -->
+    <section class="py-5">
+        <div class="container">
+            <!-- Loading Spinner -->
+            <div class="text-center py-5 d-none" id="priestsSpinner">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2">Loading priests...</p>
+            </div>
+            
+            <!-- No Results Message -->
+            <div class="text-center py-5 d-none" id="noPriests">
+                <i class="fas fa-user-times fa-3x text-muted mb-3"></i>
+                <h4>No priests found</h4>
+                <p>No priests match your filter criteria. Please try different filters.</p>
+                <button class="btn btn-primary mt-3" id="resetFiltersBtn">Reset Filters</button>
+            </div>
+            
+            <!-- Priests List -->
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="priestsList">
+                <!-- Priests will be dynamically added here -->
+            </div>
+            
+            <!-- Load More Button -->
+            <div class="text-center mt-5">
+                <button class="btn btn-outline-primary" id="loadMoreBtn">Load More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Our Team Section -->
+    <section class="bg-light py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="mb-4">Join Our Team of Respected Priests</h2>
+                    <p class="mb-4">Are you a priest with expertise in performing traditional ceremonies? Join our network to reach more devotees and grow your service.</p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Flexible scheduling</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Fair compensation</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Reach a wider audience</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Easy-to-use platform</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary btn-lg">Apply Now</a>
+                </div>
+                <div class="col-lg-6 mt-4 mt-lg-0">
+                    <img src="images/join-team.jpg" alt="Join Our Team" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="purple-bg text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>SERVICES</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="ceremonies.html" class="text-white">Ceremonies</a></li>
+                        <li><a href="homas.html" class="text-white">Homas</a></li>
+                        <li><a href="japam.html" class="text-white">Japam</a></li>
+                        <li><a href="pujas.html" class="text-white">Pujas</a></li>
+                        <li><a href="#" class="text-white">Remedies & Rituals</a></li>
+                        <li><a href="#" class="text-white">Holy Yatra</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>LEGAL</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">About Us</a></li>
+                        <li><a href="#" class="text-white">Disclaimer</a></li>
+                        <li><a href="#" class="text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white">Return & Refund Policy</a></li>
+                        <li><a href="#" class="text-white">Security Policy</a></li>
+                        <li><a href="#" class="text-white">Shipment Policy</a></li>
+                        <li><a href="#" class="text-white">Terms and Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>SUPPORT</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Contact Us</a></li>
+                        <li><a href="mailto:support@priestservices.com" class="text-white">support@priestservices.com</a></li>
+                        <li><a href="tel:+919500095649" class="text-white">+91 9500095649</a></li>
+                        <li><a href="tel:+919500121086" class="text-white">+91 950012086</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>PARTNER SITES</h5>
+                    <div class="partner-sites">
+                        <img src="images/partners.png" class="img-fluid" alt="Partner sites">
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p>© 2001-2025 Vaaak Sounds, Inc. - All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Icon -->
+    <div class="position-fixed bottom-0 end-0 p-3">
+        <div class="chat-icon bg-success text-white rounded-circle p-3">
+            <i class="fas fa-comment"></i>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Firebase JS -->
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore-compat.js"></script>
+    <!-- Custom JS -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/priests.js"></script>
+</body>
+</html> 

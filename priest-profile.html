@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priest Profile - Archaka</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/archaka.png" alt="Archaka Logo" height="40" class="me-2">
+                Archaka
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ceremonies.html">Ceremonies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pujas.html">Pujas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="homas.html">Homas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="japam.html">Japam</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="position-relative me-3">
+                        <a href="cart.html" class="text-white">
+                            <i class="fas fa-shopping-cart fa-lg"></i>
+                            <span class="cart-badge" id="cartCount">0</span>
+                        </a>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle d-flex align-items-center text-white text-decoration-none" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://via.placeholder.com/32" alt="User" id="navProfileImage" width="32" height="32" class="rounded-circle me-2">
+                            <span id="navUserName">Guest</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="login.html"><i class="fas fa-sign-in-alt me-2"></i> Login</a></li>
+                            <li><a class="dropdown-item" href="register.html"><i class="fas fa-user-plus me-2"></i> Register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Priest Profile Section -->
+    <section class="py-5">
+        <div class="container">
+            <!-- Loading Spinner -->
+            <div class="text-center py-5 d-none" id="profileSpinner">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2">Loading priest profile...</p>
+            </div>
+            
+            <div id="priestProfileContent">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card text-center mb-4">
+                            <div class="card-body">
+                                <img src="images/services/priest.jpg" alt="Priest" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+                                <h4 id="priestName">Pandit Ramakrishna Sharma</h4>
+                                <div class="mb-2">
+                                    <span class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </span>
+                                    <small class="ms-1">(4.8, 42 reviews)</small>
+                                </div>
+                                <p id="priestLocation" class="text-muted"><i class="fas fa-map-marker-alt me-2"></i>Chennai, Tamil Nadu</p>
+                                <div class="d-grid">
+                                    <a href="priest-booking.html?id=priest123" class="btn btn-primary">Book Priest</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Verification Status -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Verification Status</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span><i class="fas fa-id-card text-success me-2"></i> Identity</span>
+                                        <span class="badge bg-success rounded-pill">Verified</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span><i class="fas fa-graduation-cap text-success me-2"></i> Qualifications</span>
+                                        <span class="badge bg-success rounded-pill">Verified</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span><i class="fas fa-phone-alt text-success me-2"></i> Phone Number</span>
+                                        <span class="badge bg-success rounded-pill">Verified</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span><i class="fas fa-envelope text-success me-2"></i> Email Address</span>
+                                        <span class="badge bg-success rounded-pill">Verified</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-8">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">About the Priest</h5>
+                            </div>
+                            <div class="card-body">
+                                <p id="priestBio" class="mb-0">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nisl eu nisl. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nisl eu nisl. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nisl eu nisl.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">Reviews</h5>
+                                <button class="btn btn-outline-primary btn-sm" id="writeReviewBtn">
+                                    <i class="fas fa-edit me-1"></i> Write a Review
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <div class="review-summary d-flex align-items-center">
+                                        <div class="display-4 me-3" id="avgRating">4.5</div>
+                                        <div>
+                                            <div class="ratings mb-2">
+                                                <span class="text-warning"><i class="fas fa-star"></i></span>
+                                                <span class="text-warning"><i class="fas fa-star"></i></span>
+                                                <span class="text-warning"><i class="fas fa-star"></i></span>
+                                                <span class="text-warning"><i class="fas fa-star"></i></span>
+                                                <span class="text-warning"><i class="fas fa-star-half-alt"></i></span>
+                                            </div>
+                                            <div class="text-muted" id="totalReviews">Based on 120 reviews</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Review Form -->
+                                <div class="card mb-4 d-none" id="reviewForm">
+                                    <div class="card-body">
+                                        <h6 class="mb-3">Write Your Review</h6>
+                                        <form id="priestReviewForm">
+                                            <div class="mb-3">
+                                                <label class="form-label">Rating</label>
+                                                <div class="rating-input">
+                                                    <span class="star" data-value="1"><i class="far fa-star"></i></span>
+                                                    <span class="star" data-value="2"><i class="far fa-star"></i></span>
+                                                    <span class="star" data-value="3"><i class="far fa-star"></i></span>
+                                                    <span class="star" data-value="4"><i class="far fa-star"></i></span>
+                                                    <span class="star" data-value="5"><i class="far fa-star"></i></span>
+                                                    <input type="hidden" id="ratingInput" name="rating" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="reviewTitle" class="form-label">Title</label>
+                                                <input type="text" class="form-control" id="reviewTitle" placeholder="Summarize your experience">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="reviewContent" class="form-label">Review</label>
+                                                <textarea class="form-control" id="reviewContent" rows="3" placeholder="Share your experience with this priest"></textarea>
+                                            </div>
+                                            <div class="d-flex justify-content-end">
+                                                <button type="button" class="btn btn-outline-secondary me-2" id="cancelReviewBtn">Cancel</button>
+                                                <button type="submit" class="btn btn-primary">Submit Review</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                                <!-- Reviews List -->
+                                <div id="reviewsList">
+                                    <!-- Reviews will be dynamically added here -->
+                                    <div class="review-item mb-4 pb-4 border-bottom">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <img src="images/user-placeholder.jpg" class="rounded-circle me-2" alt="User" width="40" height="40">
+                                            <div>
+                                                <h6 class="mb-0">Rajesh Kumar</h6>
+                                                <small class="text-muted">2 weeks ago</small>
+                                            </div>
+                                        </div>
+                                        <div class="ratings mb-2">
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                        </div>
+                                        <h6 class="mb-2">Excellent Service for our Gruhapravesam</h6>
+                                        <p class="mb-0">The pandit was very knowledgeable and performed all rituals with precision. He explained the significance of each step, making it meaningful for our family. Highly recommended!</p>
+                                    </div>
+                                    
+                                    <div class="review-item mb-4 pb-4 border-bottom">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <img src="images/user-placeholder.jpg" class="rounded-circle me-2" alt="User" width="40" height="40">
+                                            <div>
+                                                <h6 class="mb-0">Anjali Sharma</h6>
+                                                <small class="text-muted">1 month ago</small>
+                                            </div>
+                                        </div>
+                                        <div class="ratings mb-2">
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="text-muted"><i class="far fa-star"></i></span>
+                                        </div>
+                                        <h6 class="mb-2">Great for our baby's Naamakaranam</h6>
+                                        <p class="mb-0">We had a wonderful experience with the pandit for our baby's naming ceremony. He was punctual, professional and very patient with our family members. The ceremony was conducted beautifully.</p>
+                                    </div>
+                                    
+                                    <div class="review-item">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <img src="images/user-placeholder.jpg" class="rounded-circle me-2" alt="User" width="40" height="40">
+                                            <div>
+                                                <h6 class="mb-0">Vinod Reddy</h6>
+                                                <small class="text-muted">2 months ago</small>
+                                            </div>
+                                        </div>
+                                        <div class="ratings mb-2">
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="text-warning"><i class="fas fa-star-half-alt"></i></span>
+                                        </div>
+                                        <h6 class="mb-2">Thorough and Detailed Service</h6>
+                                        <p class="mb-0">The pandit was thorough in his approach, making sure all the rituals were performed correctly. He was also very accommodating with our specific requirements and preferences.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-outline-primary" id="loadMoreReviewsBtn">Load More Reviews</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">Available Dates</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i> Select a date to check availability and book this priest.
+                                </div>
+                                <div id="availabilityCalendar">
+                                    <!-- Calendar will be added here by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="purple-bg text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>SERVICES</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="ceremonies.html" class="text-white">Ceremonies</a></li>
+                        <li><a href="homas.html" class="text-white">Homas</a></li>
+                        <li><a href="japam.html" class="text-white">Japam</a></li>
+                        <li><a href="pujas.html" class="text-white">Pujas</a></li>
+                        <li><a href="#" class="text-white">Remedies & Rituals</a></li>
+                        <li><a href="#" class="text-white">Holy Yatra</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>LEGAL</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">About Us</a></li>
+                        <li><a href="#" class="text-white">Disclaimer</a></li>
+                        <li><a href="#" class="text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white">Return & Refund Policy</a></li>
+                        <li><a href="#" class="text-white">Security Policy</a></li>
+                        <li><a href="#" class="text-white">Shipment Policy</a></li>
+                        <li><a href="#" class="text-white">Terms and Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>SUPPORT</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Contact Us</a></li>
+                        <li><a href="mailto:support@priestservices.com" class="text-white">support@priestservices.com</a></li>
+                        <li><a href="tel:+919500095649" class="text-white">+91 9500095649</a></li>
+                        <li><a href="tel:+919500121086" class="text-white">+91 950012086</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>PARTNER SITES</h5>
+                    <div class="partner-sites">
+                        <img src="images/partners.png" class="img-fluid" alt="Partner sites">
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p>© 2001-2025 Vaaak Sounds, Inc. - All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Icon -->
+    <div class="position-fixed bottom-0 end-0 p-3">
+        <div class="chat-icon bg-success text-white rounded-circle p-3">
+            <i class="fas fa-comment"></i>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Flatpickr Calendar -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Firebase JS -->
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore-compat.js"></script>
+    <!-- Custom JS -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/priest-profile.js"></script>
+</body>
+</html> 

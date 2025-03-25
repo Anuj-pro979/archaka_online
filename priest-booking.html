@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Priest - Archaka</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/service-cards.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Razorpay -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        .priest-card {
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        .priest-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .priest-photo {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+        .rating-stars {
+            color: #ffc107;
+        }
+        .filter-section {
+            border-radius: 8px;
+        }
+        .badge-pill {
+            border-radius: 50rem;
+            padding: 0.35em 0.8em;
+            font-size: 0.75em;
+            background-color: #f8f9fa;
+            color: #212529;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+        .selected-priest {
+            border: 2px solid #8e44ad !important;
+            position: relative;
+        }
+        .selected-priest::after {
+            content: "Selected";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #8e44ad;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        .priest-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/archaka.png" alt="Archaka Logo" height="40" class="me-2">
+                Archaka
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ceremonies.html">Ceremonies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pujas.html">Pujas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="homas.html">Homas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="japam.html">Japam</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="position-relative me-3">
+                        <a href="cart.html" class="text-white">
+                            <i class="fas fa-shopping-cart fa-lg"></i>
+                            <span class="cart-badge" id="cartCount">0</span>
+                        </a>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle d-flex align-items-center text-white text-decoration-none" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://via.placeholder.com/32" alt="User" id="navProfileImage" width="32" height="32" class="rounded-circle me-2">
+                            <span id="navUserName">Guest</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="login.html"><i class="fas fa-sign-in-alt me-2"></i> Login</a></li>
+                            <li><a class="dropdown-item" href="register.html"><i class="fas fa-user-plus me-2"></i> Register</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Booking Header -->
+    <section class="py-4 bg-light">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item" id="serviceTypeLink"><a href="#" id="serviceTypeUrl">Service Type</a></li>
+                    <li class="breadcrumb-item" id="serviceNameLink"><a href="#" id="serviceDetailUrl">Service Name</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Book a Priest</li>
+                </ol>
+            </nav>
+
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="mb-2">Book a Priest for <span id="serviceName">Service Name</span></h1>
+                    <div class="booking-details text-muted">
+                        <p class="mb-0"><i class="fas fa-calendar-alt me-2"></i>Date: <span id="bookingDate">DD/MM/YYYY</span></p>
+                        <p class="mb-0"><i class="fas fa-clock me-2"></i>Time: <span id="bookingTime">HH:MM AM/PM</span></p>
+                        <p class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>Location: <span id="bookingLocation">Location details</span></p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <a href="#" id="editBookingLink" class="btn btn-outline-primary"><i class="fas fa-edit me-2"></i>Edit Booking Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Filters Sidebar -->
+                <div class="col-lg-3 mb-4">
+                    <div class="card border-0 shadow-sm filter-section">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0">Filter Priests</h5>
+                        </div>
+                        <div class="card-body">
+                            <form id="filterForm">
+                                <!-- Rating Filter -->
+                                <div class="mb-3">
+                                    <label class="form-label">Minimum Rating</label>
+                                    <select class="form-select" id="ratingFilter">
+                                        <option value="0">Any Rating</option>
+                                        <option value="3">3+ Stars</option>
+                                        <option value="4" selected>4+ Stars</option>
+                                        <option value="4.5">4.5+ Stars</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- Experience Filter -->
+                                <div class="mb-3">
+                                    <label class="form-label">Experience</label>
+                                    <select class="form-select" id="experienceFilter">
+                                        <option value="0">Any Experience</option>
+                                        <option value="5">5+ Years</option>
+                                        <option value="10">10+ Years</option>
+                                        <option value="15">15+ Years</option>
+                                        <option value="20">20+ Years</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- Language Filter -->
+                                <div class="mb-3">
+                                    <label class="form-label">Languages</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="English" id="langEnglish" checked>
+                                        <label class="form-check-label" for="langEnglish">English</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Hindi" id="langHindi" checked>
+                                        <label class="form-check-label" for="langHindi">Hindi</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Sanskrit" id="langSanskrit">
+                                        <label class="form-check-label" for="langSanskrit">Sanskrit</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Tamil" id="langTamil">
+                                        <label class="form-check-label" for="langTamil">Tamil</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Telugu" id="langTelugu">
+                                        <label class="form-check-label" for="langTelugu">Telugu</label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Specialization Filter -->
+                                <div class="mb-3">
+                                    <label class="form-label">Specialization</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Ceremonies" id="specCeremonies">
+                                        <label class="form-check-label" for="specCeremonies">Ceremonies</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Pujas" id="specPujas">
+                                        <label class="form-check-label" for="specPujas">Pujas</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Homas" id="specHomas">
+                                        <label class="form-check-label" for="specHomas">Homas</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Japa" id="specJapa">
+                                        <label class="form-check-label" for="specJapa">Japa</label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Apply/Reset Filters -->
+                                <div class="d-grid gap-2">
+                                    <button type="button" id="applyFiltersBtn" class="btn btn-primary">Apply Filters</button>
+                                    <button type="button" id="resetFiltersBtn" class="btn btn-outline-secondary">Reset Filters</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Priests List -->
+                <div class="col-lg-9">
+                    <div class="mb-4">
+                        <h3 class="mb-3">Available Priests</h3>
+                        <p class="text-muted mb-0"><span id="priestCount">0</span> priests available for your booking</p>
+                    </div>
+                    
+                    <!-- Loading Indicator -->
+                    <div id="loadingPriests" class="text-center py-5">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2">Finding available priests...</p>
+                    </div>
+                    
+                    <!-- No Priests Available Message -->
+                    <div id="noPriestsMessage" class="alert alert-info d-none">
+                        <i class="fas fa-info-circle me-2"></i>
+                        No priests available for the selected criteria. Please try changing your filters or choosing a different date/time.
+                    </div>
+                    
+                    <!-- Priests Grid -->
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="priestsContainer">
+                        <!-- Priest cards will be inserted here dynamically -->
+                    </div>
+                    
+                    <!-- Proceed Button -->
+                    <div class="d-flex justify-content-end mt-4">
+                        <button id="proceedToBookingBtn" class="btn btn-primary btn-lg" disabled>
+                            <i class="fas fa-check-circle me-2"></i>Proceed with Selected Priest
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Priest Details Modal -->
+    <div class="modal fade" id="priestDetailsModal" tabindex="-1" aria-labelledby="priestDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="priestDetailsModalLabel">Priest Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 mb-3 mb-md-0">
+                            <img src="images/priest-placeholder.jpg" id="modalPriestImage" class="img-fluid rounded" alt="Priest">
+                        </div>
+                        <div class="col-md-8">
+                            <h4 id="modalPriestName">Priest Name</h4>
+                            <div class="mb-2 rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-muted ms-1" id="modalPriestRating">4.5/5</span>
+                                <span class="text-muted ms-1">(<span id="modalPriestReviews">120</span> reviews)</span>
+                            </div>
+                            <p class="text-muted mb-2"><i class="fas fa-user-graduate me-2"></i>Experience: <span id="modalPriestExperience">20+ years</span></p>
+                            <p class="text-muted mb-3"><i class="fas fa-map-marker-alt me-2"></i>Location: <span id="modalPriestLocation">City, State</span></p>
+                            
+                            <h5>Languages</h5>
+                            <div class="mb-3" id="modalPriestLanguages">
+                                <span class="badge badge-language me-1 mb-1">English</span>
+                                <span class="badge badge-language me-1 mb-1">Hindi</span>
+                                <span class="badge badge-language me-1 mb-1">Sanskrit</span>
+                            </div>
+                            
+                            <h5>Specializations</h5>
+                            <div class="mb-3" id="modalPriestSpecializations">
+                                <span class="badge badge-specialization me-1 mb-1">Ceremonies</span>
+                                <span class="badge badge-specialization me-1 mb-1">Homas</span>
+                                <span class="badge badge-specialization me-1 mb-1">Pujas</span>
+                            </div>
+                            
+                            <h5>About</h5>
+                            <p id="modalPriestBio">Priest bio will appear here...</p>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <h5>Recent Reviews</h5>
+                    <div id="modalPriestReviewsContainer">
+                        <!-- Reviews will be inserted here dynamically -->
+                        <div class="review-item mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="rating-stars me-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <strong>Ramesh S.</strong>
+                                <span class="text-muted ms-auto">2 months ago</span>
+                            </div>
+                            <p class="mb-0">Very knowledgeable priest who performed the ceremony with great devotion and explained the significance of each ritual.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="selectPriestFromModalBtn">Select This Priest</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="purple-bg text-white py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>SERVICES</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="ceremonies.html" class="text-white">Ceremonies</a></li>
+                        <li><a href="homas.html" class="text-white">Homas</a></li>
+                        <li><a href="japam.html" class="text-white">Japam</a></li>
+                        <li><a href="pujas.html" class="text-white">Pujas</a></li>
+                        <li><a href="#" class="text-white">Remedies & Rituals</a></li>
+                        <li><a href="#" class="text-white">Holy Yatra</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>LEGAL</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">About Us</a></li>
+                        <li><a href="#" class="text-white">Disclaimer</a></li>
+                        <li><a href="#" class="text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white">Return & Refund Policy</a></li>
+                        <li><a href="#" class="text-white">Security Policy</a></li>
+                        <li><a href="#" class="text-white">Shipment Policy</a></li>
+                        <li><a href="#" class="text-white">Terms and Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>SUPPORT</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Contact Us</a></li>
+                        <li><a href="mailto:support@priestservices.com" class="text-white">support@priestservices.com</a></li>
+                        <li><a href="tel:+919500095649" class="text-white">+91 9500095649</a></li>
+                        <li><a href="tel:+919500121086" class="text-white">+91 9500121086</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>PARTNER SITES</h5>
+                    <div class="partner-sites">
+                        <img src="images/partners.png" class="img-fluid" alt="Partner sites">
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p>© 2001-2025 Vaaak Sounds, Inc. - All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Icon -->
+    <div class="position-fixed bottom-0 end-0 p-3">
+        <div class="chat-icon bg-success text-white rounded-circle p-3">
+            <i class="fas fa-comment"></i>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Firebase JS -->
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore-compat.js"></script>
+    <!-- Razorpay JS -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <!-- Custom JS -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/razorpay-verify.js"></script>
+    <script src="js/image-fallbacks.js"></script>
+    <script src="js/priest-booking-debug.js"></script>
+    
+    <!-- Debug Help Link -->
+    <div class="position-fixed bottom-0 start-0 p-3">
+        <a href="firebase-debug.html" target="_blank" class="btn btn-sm btn-info">
+            <i class="fas fa-bug me-1"></i> Debug Firebase
+        </a>
+    </div>
+</body>
+</html>

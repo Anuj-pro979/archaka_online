@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Ceremony - Priest Services</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Flatpickr Calendar -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/archaka.png" alt="Priest Services Logo" height="60">
+                    <span class="ms-2 fw-bold">Priest Services</span>
+                    <small class="d-block text-muted">Genuine vedic priest service at your Doorstep</small>
+                </a>
+                
+                <div class="d-flex align-items-center ms-auto me-2">
+                    <div class="position-relative">
+                        <input class="form-control rounded-pill" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                        <i class="fas fa-search position-absolute" style="right: 10px; top: 10px;"></i>
+                    </div>
+                </div>
+                
+                <div class="d-flex">
+                    <a href="cart.html" class="btn me-2">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span class="badge bg-primary rounded-pill ms-1" id="cartCount">0</span>
+                    </a>
+                    <a href="login.html" class="btn" id="accountBtn">
+                        <i class="fas fa-user"></i> Account
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Main Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark purple-bg">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="ceremonies.html">Ceremonies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="homas.html">Homas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="japam.html">Japam</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pujas.html">Pujas</a>
+                        </li>
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Holy Yatra
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                                <li><a class="dropdown-item" href="#">Temple Yatra</a></li>
+                                <li><a class="dropdown-item" href="#">Pilgrimage Packages</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Temple Services
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                <li><a class="dropdown-item" href="#">Temple Darshan</a></li>
+                                <li><a class="dropdown-item" href="#">Special Archana</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Products
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                                <li><a class="dropdown-item" href="#">Pooja Items</a></li>
+                                <li><a class="dropdown-item" href="#">Yantras</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="consultation.html">Free Pandit Consultation</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown5" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Free Tools
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown5">
+                                <li><a class="dropdown-item" href="#">Panchang</a></li>
+                                <li><a class="dropdown-item" href="#">Festival Calendar</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Booking Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="mb-4">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item" id="breadcrumbCeremony"><a href="ceremonies.html">Ceremonies</a></li>
+                        <li class="breadcrumb-item" id="breadcrumbPriest"><a href="priests.html">Priests</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Booking</li>
+                    </ol>
+                </nav>
+            </div>
+            
+            <h1 class="mb-4">Book Your Ceremony</h1>
+            
+            <!-- Loading Spinner -->
+            <div class="text-center py-5" id="bookingSpinner">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2">Loading booking information...</p>
+            </div>
+            
+            <!-- Main Booking Form -->
+            <div class="row d-none" id="bookingFormContainer">
+                <div class="col-lg-8">
+                    <!-- Ceremony Selection -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">1. Select Ceremony</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="ceremonyType" class="form-label">Ceremony Type</label>
+                                <select class="form-select" id="ceremonyType" required>
+                                    <option value="">Select a ceremony</option>
+                                    <option value="gruhapravesam">Gruhapravesam (House Warming)</option>
+                                    <option value="naamakaranam">Naamakaranam (Naming Ceremony)</option>
+                                    <option value="annaprasana">Annaprasana (First Solid Food)</option>
+                                    <option value="upanayanam">Upanayanam (Thread Ceremony)</option>
+                                    <option value="wedding">Wedding Ceremony</option>
+                                    <option value="satyanarayana">Satyanarayan Puja</option>
+                                    <option value="ganapathi">Ganapathi Homam</option>
+                                    <option value="navagraha">Navagraha Homam</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3 d-none" id="otherCeremonyGroup">
+                                <label for="otherCeremony" class="form-label">Please specify:</label>
+                                <input type="text" class="form-control" id="otherCeremony" placeholder="Enter ceremony name">
+                            </div>
+                            
+                            <div id="ceremonyDetails" class="mt-4 d-none">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="" id="ceremonyImage" class="img-fluid rounded" alt="Ceremony Image">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h5 id="ceremonyTitle"></h5>
+                                        <p id="ceremonyDescription" class="text-muted"></p>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <span class="fw-bold me-2">Duration:</span>
+                                            <span id="ceremonyDuration"></span>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <span class="fw-bold me-2">Price:</span>
+                                            <span id="ceremonyPrice" class="text-primary fw-bold"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Priest Selection -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">2. Select Priest</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="priestContainer">
+                                <div class="d-flex align-items-center mb-4" id="selectedPriestInfo">
+                                    <img src="" id="priestImage" class="rounded-circle me-3" alt="Priest Photo" width="80" height="80">
+                                    <div>
+                                        <h5 id="priestName" class="mb-1"></h5>
+                                        <div id="priestRating" class="ratings mb-1">
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="text-warning"><i class="fas fa-star-half-alt"></i></span>
+                                            <span class="ms-1">4.5</span>
+                                        </div>
+                                        <p class="mb-0 text-muted" id="priestExperience">Experience: 20+ years</p>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <a href="#" id="changePriestBtn" class="btn btn-sm btn-outline-primary">Change</a>
+                                    </div>
+                                </div>
+                                
+                                <div id="priestSelection" class="d-none">
+                                    <div class="mb-3">
+                                        <label for="priestFilter" class="form-label">Filter by:</label>
+                                        <select class="form-select" id="priestFilter">
+                                            <option value="recommended">Recommended</option>
+                                            <option value="rating">Highest Rated</option>
+                                            <option value="experience">Most Experienced</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div id="priestsList" class="row row-cols-1 row-cols-md-2 g-4">
+                                        <!-- Priests will be dynamically added here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Date and Time Selection -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">3. Select Date & Time</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="ceremonyDate" class="form-label">Ceremony Date</label>
+                                        <input type="text" class="form-control" id="ceremonyDate" placeholder="Select a date" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="ceremonyTime" class="form-label">Ceremony Time</label>
+                                        <select class="form-select" id="ceremonyTime" required>
+                                            <option value="">Select time</option>
+                                            <option value="06:00">06:00 AM</option>
+                                            <option value="07:00">07:00 AM</option>
+                                            <option value="08:00">08:00 AM</option>
+                                            <option value="09:00">09:00 AM</option>
+                                            <option value="10:00">10:00 AM</option>
+                                            <option value="11:00">11:00 AM</option>
+                                            <option value="16:00">04:00 PM</option>
+                                            <option value="17:00">05:00 PM</option>
+                                            <option value="18:00">06:00 PM</option>
+                                        </select>
+                                        <div class="form-text text-muted">Muhurtham times available based on selected date</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Address and Contact Information -->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="mb-0">4. Address & Contact Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="addressLine1" class="form-label">Address Line 1</label>
+                                <input type="text" class="form-control" id="addressLine1" placeholder="Enter your address" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="addressLine2" class="form-label">Address Line 2</label>
+                                <input type="text" class="form-control" id="addressLine2" placeholder="Apartment, suite, unit, etc. (optional)">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="city" class="form-label">City</label>
+                                        <input type="text" class="form-control" id="city" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="state" class="form-label">State</label>
+                                        <select class="form-select" id="state" required>
+                                            <option value="">Select State</option>
+                                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                            <option value="Karnataka">Karnataka</option>
+                                            <option value="Kerala">Kerala</option>
+                                            <option value="Tamil Nadu">Tamil Nadu</option>
+                                            <option value="Telangana">Telangana</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="zipCode" class="form-label">Postal Code</label>
+                                        <input type="text" class="form-control" id="zipCode" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                                <div class="form-text">We'll use this to coordinate ceremony details</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="specialInstructions" class="form-label">Special Instructions</label>
+                                <textarea class="form-control" id="specialInstructions" rows="3" placeholder="Any specific requirements or information for the priest"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Booking Summary Card -->
+                <div class="col-lg-4">
+                    <div class="card sticky-top" style="top: 20px;">
+                        <div class="card-header">
+                            <h5 class="mb-0">Booking Summary</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span>Ceremony:</span>
+                                <span id="summaryCeremony" class="fw-bold">Not selected</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span>Priest:</span>
+                                <span id="summaryPriest" class="fw-bold">Not selected</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span>Date & Time:</span>
+                                <span id="summaryDateTime" class="fw-bold">Not selected</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Ceremony Fee:</span>
+                                <span id="summaryFee">₹0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Service Fee:</span>
+                                <span id="summaryServiceFee">₹0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span>GST (18%):</span>
+                                <span id="summaryTax">₹0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3 fw-bold">
+                                <span>Total:</span>
+                                <span id="summaryTotal" class="text-primary">₹0.00</span>
+                            </div>
+                            <div class="alert alert-info small mb-3">
+                                <i class="fas fa-info-circle me-2"></i> Additional charges may apply based on ceremony requirements and location.
+                            </div>
+                            <div class="d-grid gap-2 mb-3">
+                                <button class="btn btn-primary py-2" id="proceedToCheckoutBtn">
+                                    Proceed to Checkout
+                                </button>
+                                <button class="btn btn-outline-primary py-2" id="addToCartBtn">
+                                    Add to Cart
+                                </button>
+                            </div>
+                            <div class="text-center">
+                                <img src="images/payment-methods.png" alt="Payment Methods" class="img-fluid" style="max-height: 30px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="purple-bg text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>SERVICES</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="ceremonies.html" class="text-white">Ceremonies</a></li>
+                        <li><a href="homas.html" class="text-white">Homas</a></li>
+                        <li><a href="japam.html" class="text-white">Japam</a></li>
+                        <li><a href="pujas.html" class="text-white">Pujas</a></li>
+                        <li><a href="#" class="text-white">Remedies & Rituals</a></li>
+                        <li><a href="#" class="text-white">Holy Yatra</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>LEGAL</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">About Us</a></li>
+                        <li><a href="#" class="text-white">Disclaimer</a></li>
+                        <li><a href="#" class="text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-white">Return & Refund Policy</a></li>
+                        <li><a href="#" class="text-white">Security Policy</a></li>
+                        <li><a href="#" class="text-white">Shipment Policy</a></li>
+                        <li><a href="#" class="text-white">Terms and Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>SUPPORT</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Contact Us</a></li>
+                        <li><a href="mailto:support@priestservices.com" class="text-white">support@priestservices.com</a></li>
+                        <li><a href="tel:+919500095649" class="text-white">+91 9500095649</a></li>
+                        <li><a href="tel:+919500121086" class="text-white">+91 9500121086</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>PARTNER SITES</h5>
+                    <div class="partner-sites">
+                        <img src="images/partners.png" class="img-fluid" alt="Partner sites">
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p>© 2001-2025 Vaaak Sounds, Inc. - All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Icon -->
+    <div class="position-fixed bottom-0 end-0 p-3">
+        <div class="chat-icon bg-success text-white rounded-circle p-3">
+            <i class="fas fa-comment"></i>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Firebase JS -->
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore-compat.js"></script>
+    <!-- Custom JS -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/booking.js"></script>
+</body>
+</html> 
