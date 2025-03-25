@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earnings - Archaka Priest Portal</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="images/logo.png" alt="Archaka Logo" height="40" class="me-2">
+        Archaka Priest Portal
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt me-1"></i> Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="orders.html"><i class="fas fa-list-alt me-1"></i> Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.html"><i class="fas fa-user me-1"></i> Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="earnings.html"><i class="fas fa-wallet me-1"></i> Earnings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="notifications.html"><i class="fas fa-bell me-1"></i> Notifications</a>
+          </li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <div class="position-relative me-3">
+            <a href="notifications.html" class="text-white">
+              <i class="fas fa-bell fa-lg"></i>
+              <span class="notification-badge" id="notification-count">0</span>
+            </a>
+          </div>
+          <div class="dropdown">
+            <a class="dropdown-toggle d-flex align-items-center text-white text-decoration-none" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="images/user-placeholder.jpg" alt="User" id="navProfileImage" width="32" height="32" class="rounded-circle me-2">
+              <span id="navUserName">Priest Name</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+              <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i> Profile</a></li>
+              <li><a class="dropdown-item" href="settings.html"><i class="fas fa-cog me-2"></i> Settings</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="mb-0">Earnings</h2>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#withdrawModal">
+        <i class="fas fa-money-bill-wave me-1"></i> Request Withdrawal
+      </button>
+    </div>
+    
+    <!-- Earnings Summary Cards -->
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <div class="card bg-success text-white h-100">
+          <div class="card-body">
+            <h5 class="card-title">Available Balance</h5>
+            <h3 class="card-text" id="availableBalance">₹0.00</h3>
+            <p class="mb-0">Ready to withdraw</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card bg-primary text-white h-100">
+          <div class="card-body">
+            <h5 class="card-title">Pending Balance</h5>
+            <h3 class="card-text" id="pendingBalance">₹0.00</h3>
+            <p class="mb-0">Will be available in 7 days</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card bg-info text-white h-100">
+          <div class="card-body">
+            <h5 class="card-title">Total Earnings</h5>
+            <h3 class="card-text" id="totalEarnings">₹0.00</h3>
+            <p class="mb-0">Lifetime earnings</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card bg-secondary text-white h-100">
+          <div class="card-body">
+            <h5 class="card-title">Withdrawn</h5>
+            <h3 class="card-text" id="totalWithdrawn">₹0.00</h3>
+            <p class="mb-0">Total withdrawn</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Earnings Chart -->
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Earnings Overview</h5>
+        <div class="btn-group">
+          <button type="button" class="btn btn-outline-primary" data-period="week">Week</button>
+          <button type="button" class="btn btn-outline-primary active" data-period="month">Month</button>
+          <button type="button" class="btn btn-outline-primary" data-period="year">Year</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <canvas id="earningsChart" height="300"></canvas>
+      </div>
+    </div>
+    
+    <!-- Payment Methods -->
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Payment Methods</h5>
+        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addPaymentMethodModal">
+          <i class="fas fa-plus me-1"></i> Add Payment Method
+        </button>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Details</th>
+                <th>Status</th>
+                <th>Default</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="paymentMethodsTable">
+              <tr>
+                <td><i class="fas fa-university me-2"></i> Bank Account</td>
+                <td>HDFC Bank ****1234</td>
+                <td><span class="badge bg-success">Verified</span></td>
+                <td><i class="fas fa-check-circle text-success"></i></td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#editPaymentMethodModal">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-danger">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td><i class="fas fa-wallet me-2"></i> UPI</td>
+                <td>user@upi</td>
+                <td><span class="badge bg-success">Verified</span></td>
+                <td><i class="fas fa-times-circle text-muted"></i></td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-outline-primary me-1" data-bs-toggle="modal" data-bs-target="#editPaymentMethodModal">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button type="button" class="btn btn-sm btn-outline-danger">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Transaction History -->
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Transaction History</h5>
+        <div class="input-group" style="max-width: 300px;">
+          <input type="text" class="form-control" placeholder="Search transactions" id="transactionSearch">
+          <button class="btn btn-outline-secondary" type="button" id="clearTransactionSearch">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th class="text-end">Amount</th>
+              </tr>
+            </thead>
+            <tbody id="transactionsTable">
+              <tr class="transaction-row">
+                <td>15 Jun 2023</td>
+                <td><span class="badge bg-success">Earning</span></td>
+                <td>Order #1234 - Puja Service</td>
+                <td><span class="badge bg-success">Completed</span></td>
+                <td class="text-success text-end">+ ₹2,500.00</td>
+              </tr>
+              <tr class="transaction-row">
+                <td>12 Jun 2023</td>
+                <td><span class="badge bg-primary">Withdrawal</span></td>
+                <td>Withdrawal to HDFC Bank ****1234</td>
+                <td><span class="badge bg-success">Completed</span></td>
+                <td class="text-danger text-end">- ₹5,000.00</td>
+              </tr>
+              <tr class="transaction-row">
+                <td>10 Jun 2023</td>
+                <td><span class="badge bg-success">Earning</span></td>
+                <td>Order #1187 - Havan Service</td>
+                <td><span class="badge bg-warning">Pending</span></td>
+                <td class="text-success text-end">+ ₹3,500.00</td>
+              </tr>
+              <tr class="transaction-row">
+                <td>05 Jun 2023</td>
+                <td><span class="badge bg-primary">Withdrawal</span></td>
+                <td>Withdrawal to UPI user@upi</td>
+                <td><span class="badge bg-danger">Failed</span></td>
+                <td class="text-danger text-end">- ₹2,000.00</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-between align-items-center">
+            <p class="mb-0"><span id="totalTransactions">4</span> transactions found</p>
+            <div>
+              <button class="btn btn-sm btn-outline-primary" id="prevPage" disabled>
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <span class="mx-2">Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
+              <button class="btn btn-sm btn-outline-primary" id="nextPage" disabled>
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Withdrawal Modal -->
+  <div class="modal fade" id="withdrawModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Request Withdrawal</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="available-balance-box text-center p-3 mb-3 bg-light rounded">
+            <p class="mb-1">Available Balance</p>
+            <h3 id="modalAvailableBalance">₹10,000.00</h3>
+          </div>
+          <form id="withdrawForm">
+            <div class="mb-3">
+              <label for="withdrawAmount" class="form-label">Amount to Withdraw</label>
+              <div class="input-group">
+                <span class="input-group-text">₹</span>
+                <input type="number" class="form-control" id="withdrawAmount" min="500" max="10000" required>
+              </div>
+              <div class="form-text">Minimum withdrawal amount is ₹500</div>
+            </div>
+            <div class="mb-3">
+              <label for="paymentMethodSelect" class="form-label">Select Payment Method</label>
+              <select class="form-select" id="paymentMethodSelect" required>
+                <option value="bank-1">HDFC Bank ****1234</option>
+                <option value="upi-1">UPI: user@upi</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="withdrawNotes" class="form-label">Notes (Optional)</label>
+              <textarea class="form-control" id="withdrawNotes" rows="3"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="confirmWithdrawBtn">
+            <span class="spinner-border spinner-border-sm d-none me-2" id="withdrawSpinner"></span>
+            Confirm Withdrawal
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Payment Method Modal -->
+  <div class="modal fade" id="addPaymentMethodModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Payment Method</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="paymentMethodForm">
+            <div class="mb-3">
+              <label for="paymentType" class="form-label">Payment Type</label>
+              <select class="form-select" id="paymentType" required>
+                <option value="">Select payment type</option>
+                <option value="bank">Bank Account</option>
+                <option value="upi">UPI</option>
+              </select>
+            </div>
+            
+            <!-- Bank Account Fields (initially hidden) -->
+            <div id="bankFields" class="d-none">
+              <div class="mb-3">
+                <label for="bankName" class="form-label">Bank Name</label>
+                <input type="text" class="form-control" id="bankName">
+              </div>
+              <div class="mb-3">
+                <label for="accountName" class="form-label">Account Holder Name</label>
+                <input type="text" class="form-control" id="accountName">
+              </div>
+              <div class="mb-3">
+                <label for="accountNumber" class="form-label">Account Number</label>
+                <input type="text" class="form-control" id="accountNumber">
+              </div>
+              <div class="mb-3">
+                <label for="ifscCode" class="form-label">IFSC Code</label>
+                <input type="text" class="form-control" id="ifscCode">
+              </div>
+              <div class="mb-3">
+                <label for="accountType" class="form-label">Account Type</label>
+                <select class="form-select" id="accountType">
+                  <option value="savings">Savings</option>
+                  <option value="current">Current</option>
+                </select>
+              </div>
+            </div>
+            
+            <!-- UPI Fields (initially hidden) -->
+            <div id="upiFields" class="d-none">
+              <div class="mb-3">
+                <label for="upiId" class="form-label">UPI ID</label>
+                <input type="text" class="form-control" id="upiId" placeholder="example@upi">
+              </div>
+            </div>
+            
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="defaultPaymentMethod">
+              <label class="form-check-label" for="defaultPaymentMethod">Set as default payment method</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="savePaymentMethodBtn">
+            <span class="spinner-border spinner-border-sm d-none me-2" id="paymentMethodSpinner"></span>
+            Save Payment Method
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="js/firebase-config.js"></script>
+  <script src="js/earnings.js"></script>
+</body>
+</html> 

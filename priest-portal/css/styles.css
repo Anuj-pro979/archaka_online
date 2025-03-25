@@ -1,0 +1,414 @@
+/* Priest Portal - Main Stylesheet */
+
+/* Global Styles */
+:root {
+  --primary-color: #3f51b5;
+  --secondary-color: #f50057;
+  --primary-dark: #303f9f;
+  --primary-light: #c5cae9;
+  --text-primary: #212121;
+  --text-secondary: #757575;
+  --background-color: #f5f5f5;
+  --border-color: #e0e0e0;
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --danger-color: #f44336;
+  --info-color: #2196f3;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* Navigation Bar */
+.navbar-brand img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  font-size: 10px;
+  background: var(--secondary-color);
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cards and Panels */
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-color);
+  background-color: white;
+  border-radius: 8px 8px 0 0 !important;
+}
+
+/* Dashboard Stats Cards */
+.stats-card {
+  text-align: center;
+  padding: 20px;
+}
+
+.stats-card .card-title {
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.stats-card .card-text {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+/* Profile Page */
+.profile-header {
+  position: relative;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.profile-cover {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.profile-avatar {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 5px solid white;
+  bottom: -40px;
+  left: 50px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+  padding: 20px 20px 20px 180px;
+}
+
+.profile-info h2 {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+/* Orders Page */
+.order-details {
+  display: none;
+}
+
+.order-details.show {
+  display: block;
+}
+
+.order-timeline {
+  position: relative;
+  padding-left: 30px;
+}
+
+.order-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 15px;
+  width: 2px;
+  background-color: var(--border-color);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.timeline-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  left: -24px;
+  top: 5px;
+}
+
+.timeline-content {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+
+/* Earnings Page */
+.service-card .service-price {
+  font-weight: 500;
+}
+
+/* Form Styles */
+.form-control, .form-select {
+  padding: 0.6rem 1rem;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+}
+
+.form-control:focus, .form-select:focus {
+  box-shadow: 0 0 0 0.2rem rgba(63, 81, 181, 0.25);
+  border-color: var(--primary-color);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover, .btn-outline-primary:focus {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Loader */
+.page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loader-content {
+  text-align: center;
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.loader-content p {
+  margin-top: 15px;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+/* Dashboard Cards */
+.summary-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  height: 100%;
+}
+
+.summary-card .icon {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+.summary-card .count {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.summary-card .label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Quick Actions */
+.quick-action {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 25px 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+}
+
+.quick-action:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.quick-action .icon {
+  font-size: 30px;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.quick-action .label {
+  font-weight: 500;
+}
+
+/* Availability Toggle */
+.availability-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-label {
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+.form-switch .form-check-input {
+  width: 3em;
+  height: 1.5em;
+  cursor: pointer;
+}
+
+.form-switch .form-check-input:checked {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.availability-status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.status-available {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: var(--success-color);
+}
+
+.status-unavailable {
+  background-color: rgba(158, 158, 158, 0.1);
+  color: var(--text-secondary);
+}
+
+/* Order Status Badges */
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge-new {
+  background-color: rgba(33, 150, 243, 0.1);
+  color: var(--info-color);
+}
+
+.badge-accepted {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: var(--success-color);
+}
+
+.badge-rejected {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: var(--danger-color);
+}
+
+.badge-inprogress {
+  background-color: rgba(255, 152, 0, 0.1);
+  color: var(--warning-color);
+}
+
+.badge-completed {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: var(--success-color);
+}
+
+.badge-cancelled {
+  background-color: rgba(158, 158, 158, 0.1);
+  color: var(--text-secondary);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .profile-avatar {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .profile-info {
+    padding: 60px 20px 20px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-header {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+  
+  .card-header .input-group {
+    margin-top: 15px;
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .quick-action {
+    margin-bottom: 15px;
+  }
+  
+  .profile-cover {
+    height: 150px;
+  }
+  
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+    bottom: -30px;
+  }
+  
+  .profile-info {
+    padding: 50px 15px 15px;
+  }
+  
+  .profile-info h2 {
+    font-size: 20px;
+  }
+} 

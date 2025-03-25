@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Orders - Archaka Priest Portal</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-storage-compat.js"></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="images/logo.png" alt="Archaka Logo" height="40" class="me-2">
+        Archaka Priest Portal
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt me-1"></i> Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="orders.html"><i class="fas fa-list-alt me-1"></i> Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.html"><i class="fas fa-user me-1"></i> Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="earnings.html"><i class="fas fa-wallet me-1"></i> Earnings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="notifications.html"><i class="fas fa-bell me-1"></i> Notifications</a>
+          </li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <div class="position-relative me-3">
+            <a href="notifications.html" class="text-white">
+              <i class="fas fa-bell fa-lg"></i>
+              <span class="notification-badge" id="notification-count">0</span>
+            </a>
+          </div>
+          <div class="dropdown">
+            <a class="dropdown-toggle d-flex align-items-center text-white text-decoration-none" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="images/user-placeholder.jpg" alt="User" id="navProfileImage" width="32" height="32" class="rounded-circle me-2">
+              <span id="navUserName">Priest Name</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+              <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i> Profile</a></li>
+              <li><a class="dropdown-item" href="settings.html"><i class="fas fa-cog me-2"></i> Settings</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container py-4">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h2 class="mb-0">Manage Orders</h2>
+        <p class="text-muted">View and manage all your service orders</p>
+      </div>
+    </div>
+
+    <!-- Order List/Detail Container -->
+    <div class="row">
+      <!-- Order List -->
+      <div class="col-lg-12" id="orderListSection">
+        <!-- Filters -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-md-6">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="searchInput" placeholder="Search by order ID, customer name...">
+                  <button class="btn btn-outline-secondary" type="button" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <select class="form-select" id="statusFilter">
+                  <option value="all">All Statuses</option>
+                  <option value="new">New</option>
+                  <option value="accepted">Accepted</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="completed">Completed</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <select class="form-select" id="timeFilter">
+                  <option value="all">All Time</option>
+                  <option value="today">Today</option>
+                  <option value="week">This Week</option>
+                  <option value="month">This Month</option>
+                  <option value="year">This Year</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orders Table -->
+        <div class="card">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Service</th>
+                    <th>Customer</th>
+                    <th>Date & Time</th>
+                    <th>Location</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="ordersTable">
+                  <tr>
+                    <td colspan="8" class="text-center py-4">Loading orders...</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card-footer">
+            <nav aria-label="Orders pagination">
+              <ul class="pagination justify-content-center mb-0" id="ordersPagination">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item disabled">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Detail (initially hidden) -->
+      <div class="col-lg-12 mt-4 d-none" id="orderDetailSection">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Order Details</h5>
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="backToOrdersBtn">
+              <i class="fas fa-arrow-left me-1"></i> Back to Orders
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <!-- Order Info -->
+              <div class="col-md-6">
+                <div class="border-bottom pb-3 mb-3">
+                  <h6 class="text-uppercase text-muted">Order Information</h6>
+                  <div class="row g-3">
+                    <div class="col-6">
+                      <p class="mb-1 text-muted small">Order ID</p>
+                      <p class="mb-0 fw-bold" id="detailOrderId">ORD123456</p>
+                    </div>
+                    <div class="col-6">
+                      <p class="mb-1 text-muted small">Status</p>
+                      <p class="mb-0" id="detailOrderStatus">
+                        <span class="status-tag status-new">New</span>
+                      </p>
+                    </div>
+                    <div class="col-6">
+                      <p class="mb-1 text-muted small">Order Date</p>
+                      <p class="mb-0" id="detailOrderDate">Jan 15, 2023</p>
+                    </div>
+                    <div class="col-6">
+                      <p class="mb-1 text-muted small">Service Date/Time</p>
+                      <p class="mb-0" id="detailServiceDateTime">Jan 20, 2023, 10:00 AM</p>
+                    </div>
+                    <div class="col-6">
+                      <p class="mb-1 text-muted small">Service Type</p>
+                      <p class="mb-0" id="detailServiceType">Puja</p>
+                    </div>
+                    <div class="col-6">
+                      <p class="mb-1 text-muted small">Service Duration</p>
+                      <p class="mb-0" id="detailServiceDuration">1 hour</p>
+                    </div>
+                    <div class="col-12">
+                      <p class="mb-1 text-muted small">Service Description</p>
+                      <p class="mb-0" id="detailServiceDescription">Traditional puja service for house warming ceremony.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Customer Info -->
+              <div class="col-md-6">
+                <div class="border-bottom pb-3 mb-3">
+                  <h6 class="text-uppercase text-muted">Customer Information</h6>
+                  <div class="row g-3">
+                    <div class="col-6">
+                      <p class="mb-1 text-muted small">Name</p>
+                      <p class="mb-0" id="detailCustomerName">John Doe</p>
+                    </div>
+                    <div class="col-6">
+                      <p class="mb-1 text-muted small">Phone</p>
+                      <p class="mb-0" id="detailCustomerPhone">+91 9876543210</p>
+                    </div>
+                    <div class="col-12">
+                      <p class="mb-1 text-muted small">Email</p>
+                      <p class="mb-0" id="detailCustomerEmail">john.doe@example.com</p>
+                    </div>
+                    <div class="col-12">
+                      <p class="mb-1 text-muted small">Service Location</p>
+                      <p class="mb-0" id="detailServiceLocation">123 Main St, Apartment 4B, Bangalore, Karnataka, 560001</p>
+                    </div>
+                    <div class="col-12">
+                      <p class="mb-1 text-muted small">Special Instructions</p>
+                      <p class="mb-0" id="detailSpecialInstructions">Please bring all necessary items for the puja.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Payment Info -->
+              <div class="col-md-6">
+                <div class="border-bottom pb-3 mb-3">
+                  <h6 class="text-uppercase text-muted">Payment Information</h6>
+                  <div class="row g-3">
+                    <div class="col-6">
+                      <p class="mb-1 text-muted small">Total Amount</p>
+                      <p class="mb-0 fw-bold" id="detailTotalAmount">₹2,500</p>
+                    </div>
+                    <div class="col-6">
+                      <p class="mb-1 text-muted small">Your Earnings</p>
+                      <p class="mb-0 fw-bold text-success" id="detailPriestEarnings">₹2,000</p>
+                    </div>
+                    <div class="col-6">
+                      <p class="mb-1 text-muted small">Payment Status</p>
+                      <p class="mb-0" id="detailPaymentStatus">Paid</p>
+                    </div>
+                    <div class="col-6">
+                      <p class="mb-1 text-muted small">Payment Method</p>
+                      <p class="mb-0" id="detailPaymentMethod">Online</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Order Timeline -->
+              <div class="col-md-6">
+                <h6 class="text-uppercase text-muted">Order Timeline</h6>
+                <div class="order-timeline" id="orderTimeline">
+                  <div class="timeline-item active">
+                    <h6 class="mb-1">Order Placed</h6>
+                    <p class="mb-0 text-muted small">Jan 15, 2023, 2:30 PM</p>
+                  </div>
+                  <div class="timeline-item">
+                    <h6 class="mb-1">Order Accepted</h6>
+                    <p class="mb-0 text-muted small">Pending</p>
+                  </div>
+                  <div class="timeline-item">
+                    <h6 class="mb-1">Service Started</h6>
+                    <p class="mb-0 text-muted small">Pending</p>
+                  </div>
+                  <div class="timeline-item">
+                    <h6 class="mb-1">Service Completed</h6>
+                    <p class="mb-0 text-muted small">Pending</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-4 text-center" id="orderActionButtons">
+              <button type="button" class="btn btn-success me-2" id="acceptOrderBtn">
+                <i class="fas fa-check me-1"></i> Accept Order
+              </button>
+              <button type="button" class="btn btn-danger me-2" id="rejectOrderBtn">
+                <i class="fas fa-times me-1"></i> Reject Order
+              </button>
+              <button type="button" class="btn btn-primary me-2 d-none" id="startOrderBtn">
+                <i class="fas fa-play me-1"></i> Start Service
+              </button>
+              <button type="button" class="btn btn-success me-2 d-none" id="completeOrderBtn">
+                <i class="fas fa-check-circle me-1"></i> Complete Service
+              </button>
+              <button type="button" class="btn btn-secondary me-2 d-none" id="cancelOrderBtn">
+                <i class="fas fa-ban me-1"></i> Cancel Order
+              </button>
+              <button type="button" class="btn btn-info" id="contactCustomerBtn">
+                <i class="fas fa-phone me-1"></i> Contact Customer
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reject Order Modal -->
+  <div class="modal fade" id="rejectOrderModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Reject Order</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to reject this order? Please provide a reason:</p>
+          <div class="mb-3">
+            <select class="form-select" id="rejectReasonSelect">
+              <option value="">Select a reason</option>
+              <option value="scheduling_conflict">Scheduling Conflict</option>
+              <option value="unavailable">Not Available at Requested Time</option>
+              <option value="location_too_far">Location is Too Far</option>
+              <option value="insufficient_details">Insufficient Details Provided</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="mb-3 d-none" id="otherReasonDiv">
+            <label for="otherReasonText" class="form-label">Please specify:</label>
+            <textarea class="form-control" id="otherReasonText" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirmRejectBtn">Reject Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cancel Order Modal -->
+  <div class="modal fade" id="cancelOrderModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Cancel Order</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to cancel this order? This will notify the customer and may affect your ratings.</p>
+          <div class="mb-3">
+            <label for="cancelReasonText" class="form-label">Please provide a reason:</label>
+            <textarea class="form-control" id="cancelReasonText" rows="3" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+          <button type="button" class="btn btn-danger" id="confirmCancelBtn">Cancel Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Customer Modal -->
+  <div class="modal fade" id="contactCustomerModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Contact Customer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Customer Name</label>
+            <p class="form-control-plaintext" id="contactCustomerName">John Doe</p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Phone Number</label>
+            <div class="d-flex align-items-center">
+              <p class="form-control-plaintext mb-0" id="contactCustomerPhone">+91 9876543210</p>
+              <a href="#" class="btn btn-sm btn-outline-primary ms-2" id="callCustomerBtn">
+                <i class="fas fa-phone"></i> Call
+              </a>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email Address</label>
+            <div class="d-flex align-items-center">
+              <p class="form-control-plaintext mb-0" id="contactCustomerEmail">john.doe@example.com</p>
+              <a href="#" class="btn btn-sm btn-outline-primary ms-2" id="emailCustomerBtn">
+                <i class="fas fa-envelope"></i> Email
+              </a>
+            </div>
+          </div>
+          <hr>
+          <div class="mb-3">
+            <label for="messageCustomerText" class="form-label">Send Message</label>
+            <textarea class="form-control" id="messageCustomerText" rows="3" placeholder="Type your message here..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="sendMessageBtn">Send Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="js/firebase-config.js"></script>
+  <script src="js/orders.js"></script>
+</body>
+</html> 

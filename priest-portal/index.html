@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archaka Online - Priest Portal</title>
+  <!-- Favicon -->
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-storage-compat.js"></script>
+  <!-- EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      emailjs.init("ulDLogj4en_CQ0QbW");
+    })();
+  </script>
+</head>
+<body class="bg-light">
+  <div class="container-fluid p-0">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="images/logo.png" alt="Archaka Logo" height="40" class="me-2">
+          Archaka Online - Priest Portal
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="#"><i class="fas fa-home me-1"></i> Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fas fa-sign-in-alt me-1"></i> Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/about.html"><i class="fas fa-info-circle me-1"></i> About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/contact.html"><i class="fas fa-envelope me-1"></i> Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="py-5 text-center bg-dark text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h1 class="fw-bold">Join Archaka Online Priest Network</h1>
+            <p class="lead mb-4">Connect with devotees, manage services, and grow your practice online</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+              <button type="button" class="btn btn-primary btn-lg px-4 gap-3" data-bs-toggle="modal" data-bs-target="#registerModal">
+                <i class="fas fa-user-plus me-2"></i> Register Now
+              </button>
+              <button type="button" class="btn btn-outline-light btn-lg px-4" data-bs-toggle="modal" data-bs-target="#loginModal">
+                <i class="fas fa-sign-in-alt me-2"></i> Login
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+      <div class="container">
+        <h2 class="text-center mb-5">Why Join Archaka Online?</h2>
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body text-center p-4">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
+                  <i class="fas fa-globe text-primary"></i>
+                </div>
+                <h3 class="card-title">Expand Your Reach</h3>
+                <p class="card-text">Connect with devotees across the globe and offer your services beyond geographical boundaries.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body text-center p-4">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
+                  <i class="fas fa-hand-holding-usd text-primary"></i>
+                </div>
+                <h3 class="card-title">Increase Earnings</h3>
+                <p class="card-text">Gain additional income through our platform with transparent payment systems and fair commissions.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body text-center p-4">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
+                  <i class="fas fa-calendar-check text-primary"></i>
+                </div>
+                <h3 class="card-title">Easy Management</h3>
+                <p class="card-text">Manage your services, bookings, and payments efficiently through our user-friendly dashboard.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5">How It Works</h2>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="text-center mb-4">
+              <div class="step-circle">1</div>
+              <h4 class="mt-3">Register</h4>
+              <p>Create your account and submit your credentials</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="text-center mb-4">
+              <div class="step-circle">2</div>
+              <h4 class="mt-3">Verification</h4>
+              <p>Get verified by our admin team</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="text-center mb-4">
+              <div class="step-circle">3</div>
+              <h4 class="mt-3">Complete Profile</h4>
+              <p>Add your services and availability</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="text-center mb-4">
+              <div class="step-circle">4</div>
+              <h4 class="mt-3">Start Receiving Orders</h4>
+              <p>Accept bookings and provide services</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-5">
+      <div class="container">
+        <h2 class="text-center mb-5">What Our Priests Say</h2>
+        <div class="row">
+          <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="images/priest1.jpg" class="rounded-circle me-3" width="60" height="60" alt="Priest">
+                  <div>
+                    <h5 class="mb-0">Pandit Ramesh Sharma</h5>
+                    <small class="text-muted">Delhi, India</small>
+                  </div>
+                </div>
+                <p class="card-text">"Joining Archaka Online has been a blessing. I'm able to connect with devotees globally and the platform is very user-friendly."</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="images/priest2.jpg" class="rounded-circle me-3" width="60" height="60" alt="Priest">
+                  <div>
+                    <h5 class="mb-0">Acharya Venkat Iyer</h5>
+                    <small class="text-muted">Chennai, India</small>
+                  </div>
+                </div>
+                <p class="card-text">"The payment system is transparent and the support team is always helpful. I've been using this platform for over a year now."</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="images/priest3.jpg" class="rounded-circle me-3" width="60" height="60" alt="Priest">
+                  <div>
+                    <h5 class="mb-0">Pandit Krishnan Nair</h5>
+                    <small class="text-muted">Bangalore, India</small>
+                  </div>
+                </div>
+                <p class="card-text">"I've been able to expand my services beyond my local temple. The flexibility to manage my availability is fantastic."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-4 bg-dark text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-3">
+            <h5>Archaka Online</h5>
+            <p class="small">Connecting devotees with priests for authentic religious services.</p>
+          </div>
+          <div class="col-lg-4 mb-3">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white-50">Home</a></li>
+              <li><a href="pages/about.html" class="text-white-50">About Us</a></li>
+              <li><a href="pages/faq.html" class="text-white-50">FAQ</a></li>
+              <li><a href="pages/contact.html" class="text-white-50">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 mb-3">
+            <h5>Connect With Us</h5>
+            <div class="social-icons">
+              <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+        <hr class="my-4 bg-secondary">
+        <div class="row">
+          <div class="col-md-6 small">
+            <p>&copy; 2023 Archaka Online. All Rights Reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-end small">
+            <a href="pages/privacy.html" class="text-white-50 me-3">Privacy Policy</a>
+            <a href="pages/terms.html" class="text-white-50">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title"><i class="fas fa-sign-in-alt me-2"></i> Priest Login</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="login-alert" class="alert alert-danger d-none" role="alert"></div>
+            <form id="loginForm">
+              <div class="mb-3">
+                <label for="loginEmail" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="loginEmail" required>
+              </div>
+              <div class="mb-3">
+                <label for="loginPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="loginPassword" required>
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary" id="loginBtn">
+                  <span class="spinner-border spinner-border-sm d-none me-2" id="loginSpinner"></span>
+                  Login
+                </button>
+              </div>
+              <div class="text-center mt-3">
+                <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+              </div>
+            </form>
+            <!-- Password Reset Form (Hidden by default) -->
+            <form id="resetPasswordForm" class="d-none">
+              <div class="mb-3">
+                <label for="resetEmail" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="resetEmail" required>
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-info" id="resetPasswordBtn">
+                  <span class="spinner-border spinner-border-sm d-none me-2" id="resetSpinner"></span>
+                  Send Reset Link
+                </button>
+              </div>
+              <div class="text-center mt-3">
+                <a href="#" id="backToLoginLink">Back to Login</a>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <p class="w-100 text-center">Don't have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal">Register Now</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title"><i class="fas fa-user-plus me-2"></i> Priest Registration</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="registration-alert" class="alert alert-info">
+              Please complete all fields accurately. Your details will be verified by our admin team before approval.
+            </div>
+            <form id="registrationForm" class="needs-validation" novalidate>
+              <!-- Step Progress Indicator -->
+              <div class="registration-steps mb-4">
+                <div class="step active" id="step1-indicator">1. Account</div>
+                <div class="step" id="step2-indicator">2. Personal</div>
+                <div class="step" id="step3-indicator">3. Professional</div>
+                <div class="step" id="step4-indicator">4. Documents</div>
+              </div>
+
+              <!-- Step 1: Account Information -->
+              <div id="step1" class="registration-step">
+                <h4 class="mb-3">Account Information</h4>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="email" required>
+                    <div class="invalid-feedback">Please provide a valid email address.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" required>
+                    <div class="invalid-feedback">Please provide a valid phone number.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" required>
+                    <div class="invalid-feedback">Password must be at least 8 characters long.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPassword" required>
+                    <div class="invalid-feedback">Passwords do not match.</div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between mt-4">
+                  <button type="button" class="btn btn-secondary btn-prev" disabled>Previous</button>
+                  <button type="button" class="btn btn-primary btn-next" id="step1Next">Next</button>
+                </div>
+              </div>
+
+              <!-- Step 2: Personal Information -->
+              <div id="step2" class="registration-step d-none">
+                <h4 class="mb-3">Personal Information</h4>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="firstName" required>
+                    <div class="invalid-feedback">Please provide your first name.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" required>
+                    <div class="invalid-feedback">Please provide your last name.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="dob" class="form-label">Date of Birth</label>
+                    <input type="date" class="form-control" id="dob" required>
+                    <div class="invalid-feedback">Please provide your date of birth.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="gender" class="form-label">Gender</label>
+                    <select class="form-select" id="gender" required>
+                      <option value="">Select</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <div class="invalid-feedback">Please select your gender.</div>
+                  </div>
+                  <div class="col-12">
+                    <label for="address" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="address" required>
+                    <div class="invalid-feedback">Please provide your address.</div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="city" required>
+                    <div class="invalid-feedback">Please provide your city.</div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="state" class="form-label">State</label>
+                    <input type="text" class="form-control" id="state" required>
+                    <div class="invalid-feedback">Please provide your state.</div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" class="form-control" id="country" required>
+                    <div class="invalid-feedback">Please provide your country.</div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between mt-4">
+                  <button type="button" class="btn btn-secondary btn-prev" id="step2Prev">Previous</button>
+                  <button type="button" class="btn btn-primary btn-next" id="step2Next">Next</button>
+                </div>
+              </div>
+
+              <!-- Step 3: Professional Information -->
+              <div id="step3" class="registration-step d-none">
+                <h4 class="mb-3">Professional Information</h4>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="qualification" class="form-label">Qualification</label>
+                    <input type="text" class="form-control" id="qualification" required>
+                    <div class="invalid-feedback">Please provide your qualification.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="experience" class="form-label">Experience (Years)</label>
+                    <input type="number" class="form-control" id="experience" required min="0">
+                    <div class="invalid-feedback">Please provide your experience.</div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Languages Known</label>
+                    <div class="language-checkboxes">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="langEnglish" value="English">
+                        <label class="form-check-label" for="langEnglish">English</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="langHindi" value="Hindi">
+                        <label class="form-check-label" for="langHindi">Hindi</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="langTamil" value="Tamil">
+                        <label class="form-check-label" for="langTamil">Tamil</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="langTelugu" value="Telugu">
+                        <label class="form-check-label" for="langTelugu">Telugu</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="langKannada" value="Kannada">
+                        <label class="form-check-label" for="langKannada">Kannada</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="langMalayalam" value="Malayalam">
+                        <label class="form-check-label" for="langMalayalam">Malayalam</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="langSanskrit" value="Sanskrit">
+                        <label class="form-check-label" for="langSanskrit">Sanskrit</label>
+                      </div>
+                    </div>
+                    <div class="invalid-feedback">Please select at least one language.</div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Specializations</label>
+                    <div class="specialization-checkboxes">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="specPuja" value="Puja">
+                        <label class="form-check-label" for="specPuja">Puja</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="specHavan" value="Havan">
+                        <label class="form-check-label" for="specHavan">Havan</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="specWedding" value="Wedding">
+                        <label class="form-check-label" for="specWedding">Wedding</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="specAstrology" value="Astrology">
+                        <label class="form-check-label" for="specAstrology">Astrology</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="specVaastu" value="Vaastu">
+                        <label class="form-check-label" for="specVaastu">Vaastu</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="specFuneral" value="Funeral">
+                        <label class="form-check-label" for="specFuneral">Funeral</label>
+                      </div>
+                    </div>
+                    <div class="invalid-feedback">Please select at least one specialization.</div>
+                  </div>
+                  <div class="col-12">
+                    <label for="bio" class="form-label">Bio/Introduction</label>
+                    <textarea class="form-control" id="bio" rows="3" required></textarea>
+                    <div class="invalid-feedback">Please provide a brief introduction about yourself.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="availability" class="form-label">Availability</label>
+                    <select class="form-select" id="availability" required>
+                      <option value="">Select</option>
+                      <option value="full-time">Full-time</option>
+                      <option value="part-time">Part-time</option>
+                      <option value="weekends">Weekends Only</option>
+                    </select>
+                    <div class="invalid-feedback">Please select your availability.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="travelDistance" class="form-label">Maximum Travel Distance (km)</label>
+                    <input type="number" class="form-control" id="travelDistance" required min="0">
+                    <div class="invalid-feedback">Please provide your maximum travel distance.</div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between mt-4">
+                  <button type="button" class="btn btn-secondary btn-prev" id="step3Prev">Previous</button>
+                  <button type="button" class="btn btn-primary btn-next" id="step3Next">Next</button>
+                </div>
+              </div>
+
+              <!-- Step 4: Documents -->
+              <div id="step4" class="registration-step d-none">
+                <h4 class="mb-3">Documents & Photos</h4>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="profilePhoto" class="form-label">Profile Photo</label>
+                    <input type="file" class="form-control" id="profilePhoto" accept="image/*" required>
+                    <div class="invalid-feedback">Please upload your profile photo.</div>
+                    <div class="form-text">Upload a clear, professional photo of yourself.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="idProof" class="form-label">ID Proof</label>
+                    <input type="file" class="form-control" id="idProof" accept="image/*, application/pdf" required>
+                    <div class="invalid-feedback">Please upload your ID proof.</div>
+                    <div class="form-text">Aadhar Card, PAN Card, Voter ID, or Passport.</div>
+                  </div>
+                  <div class="col-12">
+                    <label for="qualificationProof" class="form-label">Qualification Certificate</label>
+                    <input type="file" class="form-control" id="qualificationProof" accept="image/*, application/pdf" required>
+                    <div class="invalid-feedback">Please upload your qualification certificate.</div>
+                    <div class="form-text">Certificate from recognized religious institution or academy.</div>
+                  </div>
+                  <div class="col-12">
+                    <label for="additionalDocuments" class="form-label">Additional Documents (Optional)</label>
+                    <input type="file" class="form-control" id="additionalDocuments" accept="image/*, application/pdf" multiple>
+                    <div class="form-text">Any additional certificates, recommendations, or testimonials.</div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="termsCheckbox" required>
+                      <label class="form-check-label" for="termsCheckbox">
+                        I agree to the <a href="pages/terms.html" target="_blank">Terms and Conditions</a> and <a href="pages/privacy.html" target="_blank">Privacy Policy</a>
+                      </label>
+                      <div class="invalid-feedback">You must agree to the terms and conditions.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between mt-4">
+                  <button type="button" class="btn btn-secondary btn-prev" id="step4Prev">Previous</button>
+                  <button type="submit" class="btn btn-success" id="registerBtn">
+                    <span class="spinner-border spinner-border-sm d-none me-2" id="registerSpinner"></span>
+                    Submit Registration
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Registration Success Modal -->
+    <div class="modal fade" id="registerSuccessModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-success text-white">
+            <h5 class="modal-title"><i class="fas fa-check-circle me-2"></i> Registration Successful</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center p-4">
+            <i class="fas fa-check-circle text-success" style="font-size: 5rem;"></i>
+            <h4 class="mt-3">Thank You for Registering!</h4>
+            <p>Your registration has been submitted successfully. Our admin team will review your details and credentials.</p>
+            <p>You will receive an email notification once your registration is approved.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/registration.js"></script>
+    <script src="js/login.js"></script>
+  </div>
+</body>
+</html> 

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - Archaka Priest Portal</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-storage-compat.js"></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="images/logo.png" alt="Archaka Logo" height="40" class="me-2">
+        Archaka Priest Portal
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt me-1"></i> Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="orders.html"><i class="fas fa-list-alt me-1"></i> Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="profile.html"><i class="fas fa-user me-1"></i> Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="earnings.html"><i class="fas fa-wallet me-1"></i> Earnings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="notifications.html"><i class="fas fa-bell me-1"></i> Notifications</a>
+          </li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <div class="position-relative me-3">
+            <a href="notifications.html" class="text-white">
+              <i class="fas fa-bell fa-lg"></i>
+              <span class="notification-badge" id="notification-count">0</span>
+            </a>
+          </div>
+          <div class="dropdown">
+            <a class="dropdown-toggle d-flex align-items-center text-white text-decoration-none" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="images/user-placeholder.jpg" alt="User" id="navProfileImage" width="32" height="32" class="rounded-circle me-2">
+              <span id="navUserName">Priest Name</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+              <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user me-2"></i> Profile</a></li>
+              <li><a class="dropdown-item" href="settings.html"><i class="fas fa-cog me-2"></i> Settings</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container py-4">
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <img src="images/profile-cover.jpg" alt="Profile Cover" class="profile-cover" id="profileCover">
+      <img src="images/user-placeholder.jpg" alt="Profile" class="profile-avatar" id="profileAvatar">
+      <div class="profile-info">
+        <h2 id="profileName">Priest Name</h2>
+        <p class="mb-0" id="profileQualification">Qualification</p>
+      </div>
+    </div>
+
+    <!-- Profile Navigation Tabs -->
+    <ul class="nav nav-tabs mt-4" id="profileTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="personal-tab" data-bs-toggle="tab" data-bs-target="#personal" type="button" role="tab">
+          <i class="fas fa-user me-1"></i> Personal Info
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="services-tab" data-bs-toggle="tab" data-bs-target="#services" type="button" role="tab">
+          <i class="fas fa-concierge-bell me-1"></i> Services
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="documents-tab" data-bs-toggle="tab" data-bs-target="#documents" type="button" role="tab">
+          <i class="fas fa-file-alt me-1"></i> Documents
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="availability-tab" data-bs-toggle="tab" data-bs-target="#availability" type="button" role="tab">
+          <i class="fas fa-calendar-alt me-1"></i> Availability
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab">
+          <i class="fas fa-cog me-1"></i> Settings
+        </button>
+      </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content p-4 bg-white shadow-sm" id="profileTabContent">
+      <!-- Personal Info Tab -->
+      <div class="tab-pane fade show active" id="personal" role="tabpanel">
+        <h4 class="mb-4">Personal Information</h4>
+        <form id="personalInfoForm">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="firstName" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="firstName" required>
+            </div>
+            <div class="col-md-6">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="lastName" required>
+            </div>
+          </div>
+          
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" readonly>
+            </div>
+            <div class="col-md-6">
+              <label for="phone" class="form-label">Phone</label>
+              <input type="tel" class="form-control" id="phone" required>
+            </div>
+          </div>
+          
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="dob" class="form-label">Date of Birth</label>
+              <input type="date" class="form-control" id="dob" required>
+            </div>
+            <div class="col-md-6">
+              <label for="gender" class="form-label">Gender</label>
+              <select class="form-select" id="gender" required>
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" required>
+          </div>
+          
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <label for="city" class="form-label">City</label>
+              <input type="text" class="form-control" id="city" required>
+            </div>
+            <div class="col-md-4">
+              <label for="state" class="form-label">State</label>
+              <input type="text" class="form-control" id="state" required>
+            </div>
+            <div class="col-md-4">
+              <label for="country" class="form-label">Country</label>
+              <input type="text" class="form-control" id="country" required>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label for="bio" class="form-label">Bio/Introduction</label>
+            <textarea class="form-control" id="bio" rows="4" required></textarea>
+            <div class="form-text">This will be visible to customers booking your services.</div>
+          </div>
+          
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="qualification" class="form-label">Qualification</label>
+              <input type="text" class="form-control" id="qualification" required>
+            </div>
+            <div class="col-md-6">
+              <label for="experience" class="form-label">Experience (Years)</label>
+              <input type="number" class="form-control" id="experience" min="0" required>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label class="form-label">Languages Known</label>
+            <div class="language-checkboxes">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="langEnglish" value="English">
+                <label class="form-check-label" for="langEnglish">English</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="langHindi" value="Hindi">
+                <label class="form-check-label" for="langHindi">Hindi</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="langTamil" value="Tamil">
+                <label class="form-check-label" for="langTamil">Tamil</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="langTelugu" value="Telugu">
+                <label class="form-check-label" for="langTelugu">Telugu</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="langKannada" value="Kannada">
+                <label class="form-check-label" for="langKannada">Kannada</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="langMalayalam" value="Malayalam">
+                <label class="form-check-label" for="langMalayalam">Malayalam</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="langSanskrit" value="Sanskrit">
+                <label class="form-check-label" for="langSanskrit">Sanskrit</label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mb-3">
+            <label for="profilePhoto" class="form-label">Profile Photo</label>
+            <input type="file" class="form-control" id="profilePhoto" accept="image/*">
+            <div class="form-text">Upload a clear, professional photo of yourself.</div>
+          </div>
+          
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-primary" id="savePersonalInfoBtn">
+              <span class="spinner-border spinner-border-sm d-none me-2" id="personalInfoSpinner"></span>
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+      
+      <!-- Services Tab -->
+      <div class="tab-pane fade" id="services" role="tabpanel">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h4 class="mb-0">Services Offered</h4>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addServiceModal">
+            <i class="fas fa-plus me-1"></i> Add Service
+          </button>
+        </div>
+        
+        <div class="row g-4" id="servicesContainer">
+          <div class="col-md-4">
+            <div class="card service-card h-100">
+              <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Puja</h5>
+              </div>
+              <div class="card-body">
+                <p>Traditional puja service for various occasions and ceremonies.</p>
+                <ul class="list-unstyled mb-3">
+                  <li><i class="fas fa-clock me-2"></i> 1-2 hours</li>
+                  <li><i class="fas fa-map-marker-alt me-2"></i> Travel up to 20 km</li>
+                  <li><i class="fas fa-rupee-sign me-2"></i> <span class="service-price">₹1,500</span></li>
+                </ul>
+              </div>
+              <div class="card-footer d-flex justify-content-between">
+                <button type="button" class="btn btn-sm btn-outline-primary edit-service" data-id="1">
+                  <i class="fas fa-edit me-1"></i> Edit
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-danger delete-service" data-id="1">
+                  <i class="fas fa-trash me-1"></i> Delete
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="card service-card h-100">
+              <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Havan</h5>
+              </div>
+              <div class="card-body">
+                <p>Traditional havan ceremony for purification and blessings.</p>
+                <ul class="list-unstyled mb-3">
+                  <li><i class="fas fa-clock me-2"></i> 2-3 hours</li>
+                  <li><i class="fas fa-map-marker-alt me-2"></i> Travel up to 15 km</li>
+                  <li><i class="fas fa-rupee-sign me-2"></i> <span class="service-price">₹2,500</span></li>
+                </ul>
+              </div>
+              <div class="card-footer d-flex justify-content-between">
+                <button type="button" class="btn btn-sm btn-outline-primary edit-service" data-id="2">
+                  <i class="fas fa-edit me-1"></i> Edit
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-danger delete-service" data-id="2">
+                  <i class="fas fa-trash me-1"></i> Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Documents Tab -->
+      <div class="tab-pane fade" id="documents" role="tabpanel">
+        <h4 class="mb-4">Documents</h4>
+        
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">ID Proof</h5>
+              </div>
+              <div class="card-body">
+                <div class="text-center mb-3" id="idProofPreview">
+                  <img src="images/document-placeholder.jpg" alt="ID Proof" class="img-fluid mb-2" style="max-height: 200px;">
+                  <p class="mb-0 text-muted">document.jpg</p>
+                </div>
+                <div class="mb-3">
+                  <label for="idProof" class="form-label">Update ID Proof</label>
+                  <input type="file" class="form-control" id="idProof" accept="image/*, application/pdf">
+                </div>
+                <button type="button" class="btn btn-primary w-100" id="updateIdProofBtn">
+                  <span class="spinner-border spinner-border-sm d-none me-2" id="idProofSpinner"></span>
+                  Update Document
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">Qualification Certificate</h5>
+              </div>
+              <div class="card-body">
+                <div class="text-center mb-3" id="qualificationProofPreview">
+                  <img src="images/document-placeholder.jpg" alt="Qualification Certificate" class="img-fluid mb-2" style="max-height: 200px;">
+                  <p class="mb-0 text-muted">certificate.jpg</p>
+                </div>
+                <div class="mb-3">
+                  <label for="qualificationProof" class="form-label">Update Qualification Certificate</label>
+                  <input type="file" class="form-control" id="qualificationProof" accept="image/*, application/pdf">
+                </div>
+                <button type="button" class="btn btn-primary w-100" id="updateQualificationProofBtn">
+                  <span class="spinner-border spinner-border-sm d-none me-2" id="qualificationProofSpinner"></span>
+                  Update Document
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Additional Documents</h5>
+            <button type="button" class="btn btn-sm btn-primary" id="addDocumentBtn">
+              <i class="fas fa-plus me-1"></i> Add Document
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Document Name</th>
+                    <th>Date Uploaded</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="additionalDocumentsTable">
+                  <tr>
+                    <td>Additional Certificate.pdf</td>
+                    <td>Jan 15, 2023</td>
+                    <td>
+                      <button type="button" class="btn btn-sm btn-info me-1">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button type="button" class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div class="mt-3 d-none" id="addDocumentForm">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="documentName" class="form-label">Document Name</label>
+                  <input type="text" class="form-control" id="documentName" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="documentFile" class="form-label">Document File</label>
+                  <input type="file" class="form-control" id="documentFile" accept="image/*, application/pdf" required>
+                </div>
+                <div class="col-12">
+                  <button type="button" class="btn btn-primary" id="uploadDocumentBtn">
+                    <span class="spinner-border spinner-border-sm d-none me-2" id="documentSpinner"></span>
+                    Upload Document
+                  </button>
+                  <button type="button" class="btn btn-secondary" id="cancelUploadBtn">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Availability Tab -->
+      <div class="tab-pane fade" id="availability" role="tabpanel">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h4 class="mb-0">Availability Settings</h4>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="availabilityStatus">
+            <label class="form-check-label" for="availabilityStatus">Available for Bookings</label>
+          </div>
+        </div>
+        
+        <div class="card mb-4">
+          <div class="card-header">
+            <h5 class="mb-0">General Availability</h5>
+          </div>
+          <div class="card-body">
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="availabilityType" class="form-label">Availability Type</label>
+                <select class="form-select" id="availabilityType">
+                  <option value="full-time">Full-time</option>
+                  <option value="part-time">Part-time</option>
+                  <option value="weekends">Weekends Only</option>
+                  <option value="custom">Custom Schedule</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="maxTravelDistance" class="form-label">Max Travel Distance (km)</label>
+                <input type="number" class="form-control" id="maxTravelDistance" min="0" value="20">
+              </div>
+              <div class="col-md-4">
+                <label for="advanceBookingDays" class="form-label">Advance Booking (Days)</label>
+                <input type="number" class="form-control" id="advanceBookingDays" min="1" value="30">
+              </div>
+            </div>
+            
+            <button type="button" class="btn btn-primary" id="saveGeneralAvailabilityBtn">
+              <span class="spinner-border spinner-border-sm d-none me-2" id="availabilitySpinner"></span>
+              Save Changes
+            </button>
+          </div>
+        </div>
+        
+        <div class="card" id="customScheduleCard">
+          <div class="card-header">
+            <h5 class="mb-0">Weekly Schedule</h5>
+          </div>
+          <div class="card-body">
+            <form id="weeklyScheduleForm">
+              <div class="mb-3" id="weeklySchedule">
+                <!-- Days of the week -->
+                <div class="mb-3 border-bottom pb-3">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0">Monday</h6>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input day-toggle" type="checkbox" id="monday" data-day="monday" checked>
+                      <label class="form-check-label" for="monday">Available</label>
+                    </div>
+                  </div>
+                  <div class="day-slots" id="monday-slots">
+                    <div class="row g-2 mb-2 time-slot">
+                      <div class="col-5">
+                        <input type="time" class="form-control start-time" value="09:00">
+                      </div>
+                      <div class="col-5">
+                        <input type="time" class="form-control end-time" value="17:00">
+                      </div>
+                      <div class="col-2">
+                        <button type="button" class="btn btn-outline-danger remove-slot">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-primary add-slot" data-day="monday">
+                      <i class="fas fa-plus me-1"></i> Add Time Slot
+                    </button>
+                  </div>
+                </div>
+                
+                <!-- Repeat for other days -->
+                <!-- Tuesday, Wednesday, etc. -->
+              </div>
+              
+              <button type="submit" class="btn btn-primary" id="saveScheduleBtn">
+                <span class="spinner-border spinner-border-sm d-none me-2" id="scheduleSpinner"></span>
+                Save Schedule
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Settings Tab -->
+      <div class="tab-pane fade" id="settings" role="tabpanel">
+        <h4 class="mb-4">Account Settings</h4>
+        
+        <div class="card mb-4">
+          <div class="card-header">
+            <h5 class="mb-0">Change Password</h5>
+          </div>
+          <div class="card-body">
+            <form id="changePasswordForm">
+              <div class="mb-3">
+                <label for="currentPassword" class="form-label">Current Password</label>
+                <input type="password" class="form-control" id="currentPassword" required>
+              </div>
+              <div class="mb-3">
+                <label for="newPassword" class="form-label">New Password</label>
+                <input type="password" class="form-control" id="newPassword" required>
+                <div class="form-text">Password must be at least 8 characters long.</div>
+              </div>
+              <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                <input type="password" class="form-control" id="confirmPassword" required>
+              </div>
+              <button type="submit" class="btn btn-primary" id="changePasswordBtn">
+                <span class="spinner-border spinner-border-sm d-none me-2" id="passwordSpinner"></span>
+                Change Password
+              </button>
+            </form>
+          </div>
+        </div>
+        
+        <div class="card mb-4">
+          <div class="card-header">
+            <h5 class="mb-0">Notification Preferences</h5>
+          </div>
+          <div class="card-body">
+            <form id="notificationPreferencesForm">
+              <div class="mb-3">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="emailNotifications" checked>
+                  <label class="form-check-label" for="emailNotifications">Email Notifications</label>
+                </div>
+                <div class="form-text">Receive order updates and important notifications via email.</div>
+              </div>
+              <div class="mb-3">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="smsNotifications" checked>
+                  <label class="form-check-label" for="smsNotifications">SMS Notifications</label>
+                </div>
+                <div class="form-text">Receive order updates and important notifications via SMS.</div>
+              </div>
+              <div class="mb-3">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="marketingEmails">
+                  <label class="form-check-label" for="marketingEmails">Marketing Emails</label>
+                </div>
+                <div class="form-text">Receive promotional offers and updates about new features.</div>
+              </div>
+              <button type="submit" class="btn btn-primary" id="saveNotificationPreferencesBtn">
+                <span class="spinner-border spinner-border-sm d-none me-2" id="notificationPreferencesSpinner"></span>
+                Save Preferences
+              </button>
+            </form>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header bg-danger text-white">
+            <h5 class="mb-0">Danger Zone</h5>
+          </div>
+          <div class="card-body">
+            <p>These actions are irreversible. Please proceed with caution.</p>
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deactivateAccountModal">
+              <i class="fas fa-user-slash me-1"></i> Deactivate Account
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Service Modal -->
+  <div class="modal fade" id="addServiceModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="serviceModalTitle">Add Service</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="serviceForm">
+            <input type="hidden" id="serviceId">
+            <div class="mb-3">
+              <label for="serviceName" class="form-label">Service Name</label>
+              <input type="text" class="form-control" id="serviceName" required>
+            </div>
+            <div class="mb-3">
+              <label for="serviceDescription" class="form-label">Description</label>
+              <textarea class="form-control" id="serviceDescription" rows="3" required></textarea>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="serviceDuration" class="form-label">Duration (hours)</label>
+                <input type="number" class="form-control" id="serviceDuration" step="0.5" min="0.5" required>
+              </div>
+              <div class="col-md-6">
+                <label for="servicePrice" class="form-label">Price (₹)</label>
+                <input type="number" class="form-control" id="servicePrice" min="0" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="serviceMaxDistance" class="form-label">Max Travel Distance (km)</label>
+              <input type="number" class="form-control" id="serviceMaxDistance" min="0" required>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="serviceIsActive" checked>
+              <label class="form-check-label" for="serviceIsActive">
+                Active (Available for booking)
+              </label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="saveServiceBtn">
+            <span class="spinner-border spinner-border-sm d-none me-2" id="serviceSpinner"></span>
+            Save Service
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deactivate Account Modal -->
+  <div class="modal fade" id="deactivateAccountModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title">Deactivate Account</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to deactivate your account? This action will:</p>
+          <ul>
+            <li>Remove your profile from the platform</li>
+            <li>Cancel all pending bookings</li>
+            <li>Prevent you from receiving new booking requests</li>
+          </ul>
+          <p>You can reactivate your account by contacting support.</p>
+          <div class="mb-3">
+            <label for="deactivateReason" class="form-label">Please tell us why you're leaving:</label>
+            <textarea class="form-control" id="deactivateReason" rows="3" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="deactivatePassword" class="form-label">Enter your password to confirm:</label>
+            <input type="password" class="form-control" id="deactivatePassword" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirmDeactivateBtn">
+            <span class="spinner-border spinner-border-sm d-none me-2" id="deactivateSpinner"></span>
+            Deactivate Account
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="js/firebase-config.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html> 
